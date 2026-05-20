@@ -26,9 +26,16 @@
 4. **IDが揃ったら Claude Code で「タグIDを設定して」と依頼**
    - sync.py に自動反映 → 「同期して」でindex.htmlに反映
 
-### 【次回 STEP 2】GitHubにpush（ファイルをアップロード）
+### 【次回 STEP 2】フォームの送信先メールを設定
+> 現状はフォーム送信しても実際にはどこにも届かない。公開前に必須。
+
+- [formspree.io](https://formspree.io) で無料登録（月50件まで無料）
+- 受け取りたいメールアドレスを登録 → フォームID（例：`xpzvgkqw`）を取得
+- Claude Codeに「フォームのメール設定して、IDは〇〇」と依頼 → 即反映
+
+### 【次回 STEP 3】GitHubにpush（ファイルをアップロード）
 > pushとは：このリポジトリのファイルをGitHubのサーバーに送ること
-> タグ設定が終わってから実施する
+> タグ・フォーム設定が終わってから実施する
 
 - GitHubアカウントのPersonal Access Token（PAT）を発行
   - [github.com/settings/tokens/new](https://github.com/settings/tokens/new)
