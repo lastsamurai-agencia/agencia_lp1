@@ -219,10 +219,10 @@
   /* === CTA banner === */
   .cta-banner{background:linear-gradient(135deg, var(--c-brand-deep) 0%, var(--c-brand) 100%);position:relative;overflow:hidden;color:#fff;padding:72px 24px}
   .cta-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%, rgba(255,255,255,.18), transparent 50%), radial-gradient(circle at 20% 80%, rgba(255,255,255,.12), transparent 50%);pointer-events:none}
-  .cta-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;position:relative}
-  .cta-inner h3{margin:0 0 10px;font-size:32px;font-weight:900;line-height:1.4;letter-spacing:.01em}
-  .cta-inner p{margin:0;font-size:15px;opacity:.92;line-height:1.75}
-  .cta-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .cta-inner{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center;position:relative}
+  .cta-inner h3{margin:0 0 10px;font-size:32px;font-weight:900;line-height:1.4;letter-spacing:.01em;text-wrap:balance}
+  .cta-inner p{margin:0;font-size:15px;opacity:.92;line-height:1.75;text-wrap:pretty}
+  .cta-actions{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
   .cta-actions .btn{padding:18px 28px;font-size:16px}
   .cta-actions .btn-white{background:#fff;color:var(--c-brand-deep)}
   .cta-actions .btn-white:hover{background:var(--c-bg-tint)}
@@ -1034,6 +1034,7 @@
             <select name="建物の種類">
               <option value="">選択してください</option>
               <option>オフィスビル</option>
+              <option>オフィス内</option>
               <option>店舗・商業施設</option>
               <option>マンション</option>
               <option>医療機関・クリニック</option>
@@ -1045,12 +1046,13 @@
             <label>ご希望の清掃 <span class="opt">任意</span></label>
             <select name="ご希望の清掃">
               <option value="">選択してください</option>
-              <option>日常清掃（定期）</option>
+              <option>日常清掃</option>
               <option>定期清掃（月1回など）</option>
               <option>ガラス清掃</option>
               <option>カーペット清掃</option>
               <option>トイレ清掃</option>
               <option>排水管洗浄</option>
+              <option>マンション共用部 床洗浄</option>
               <option>原状回復</option>
               <option>スポット清掃</option>
               <option>まだ決まっていない / 相談したい</option>
