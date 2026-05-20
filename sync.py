@@ -16,6 +16,7 @@ CONFIG = {
     "YAHOO_CONVERSION_ID":  "YAHOO_CONVERSION_ID",   # 例: 1000012345
     "YAHOO_FORM_LABEL":     "YAHOO_FORM_LABEL",      # Yahoo!広告フォームラベル
     "YAHOO_PHONE_LABEL":    "YAHOO_PHONE_LABEL",     # Yahoo!広告電話ラベル
+    "FORMSPREE_ID":         "mojbedne",              # Formspree フォームID
 }
 
 HEAD_TAGS = """\
@@ -41,23 +42,40 @@ HEAD_TAGS = """\
 """.format(**CONFIG)
 
 FORM_SCRIPT = """\
-<!-- フォーム送信・電話クリック計測 -->
+<!-- フォーム送信（Formspree）・電話クリック計測 -->
 <script>
-  document.getElementById('contactForm').addEventListener('submit', function(e){{
+  document.getElementById('contactForm').addEventListener('submit', function(e) {{
     e.preventDefault();
-    const msg = document.getElementById('successMsg');
-    msg.classList.add('show');
-    this.reset();
-    const y = msg.getBoundingClientRect().top + window.scrollY - 120;
-    window.scrollTo({{ top: y, behavior: 'smooth' }});
+    var form = this;
+    var data = new FormData(form);
 
-    if (typeof gtag !== 'undefined') {{
-      gtag('event', 'generate_lead', {{ event_category: 'form', event_label: 'contact_form' }});
-      gtag('event', 'conversion', {{ send_to: '{GADS_CONVERSION_ID}/{GADS_FORM_LABEL}' }});
-    }}
-    if (typeof ytag !== 'undefined') {{
-      ytag('event', 'yss_conversion', {{ 'ycid': '{YAHOO_CONVERSION_ID}', 'label': '{YAHOO_FORM_LABEL}' }});
-    }}
+    fetch('https://formspree.io/f/{FORMSPREE_ID}', {{
+      method: 'POST',
+      body: data,
+      headers: {{ 'Accept': 'application/json' }}
+    }})
+    .then(function(res) {{
+      if (res.ok) {{
+        var msg = document.getElementById('successMsg');
+        msg.classList.add('show');
+        form.reset();
+        var y = msg.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({{ top: y, behavior: 'smooth' }});
+
+        if (typeof gtag !== 'undefined') {{
+          gtag('event', 'generate_lead', {{ event_category: 'form', event_label: 'contact_form' }});
+          gtag('event', 'conversion', {{ send_to: '{GADS_CONVERSION_ID}/{GADS_FORM_LABEL}' }});
+        }}
+        if (typeof ytag !== 'undefined') {{
+          ytag('event', 'yss_conversion', {{ 'ycid': '{YAHOO_CONVERSION_ID}', 'label': '{YAHOO_FORM_LABEL}' }});
+        }}
+      }} else {{
+        alert('送信に失敗しました。お電話（03-6555-1607）でもお気軽にご連絡ください。');
+      }}
+    }})
+    .catch(function() {{
+      alert('送信に失敗しました。お電話（03-6555-1607）でもお気軽にご連絡ください。');
+    }});
   }});
 
   document.querySelectorAll('a[href="tel:0365551607"]').forEach(function(el) {{
