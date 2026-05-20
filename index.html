@@ -1024,30 +1024,33 @@
         担当者より1営業日以内にご連絡いたします。
       </div>
       <form id="contactForm" novalidate>
+        <!-- Formspree 日本語設定 -->
+        <input type="hidden" name="_subject" value="【お見積り依頼】株式会社AGENCIAへのお問い合わせ" />
+        <input type="hidden" name="_language" value="ja" />
         <div class="form-grid">
           <div class="field">
             <label>会社名・建物名 <span class="req">必須</span></label>
-            <input type="text" name="company" required placeholder="例）株式会社サンプル / ○○ビル" />
+            <input type="text" name="会社名・建物名" required placeholder="例）株式会社サンプル / ○○ビル" />
           </div>
           <div class="field">
             <label>ご担当者名 <span class="req">必須</span></label>
-            <input type="text" name="name" required placeholder="例）山田 太郎" />
+            <input type="text" name="ご担当者名" required placeholder="例）山田 太郎" />
           </div>
           <div class="field">
             <label>電話番号 <span class="req">必須</span></label>
-            <input type="tel" name="tel" required placeholder="例）03-1234-5678" />
+            <input type="tel" name="電話番号" required placeholder="例）03-1234-5678" />
           </div>
           <div class="field">
             <label>メールアドレス <span class="req">必須</span></label>
-            <input type="email" name="email" required placeholder="例）name@example.com" />
+            <input type="email" name="メールアドレス" required placeholder="例）name@example.com" />
           </div>
           <div class="field full">
             <label>建物の所在地 <span class="opt">任意</span></label>
-            <input type="text" name="address" placeholder="例）東京都新宿区〇〇 1-2-3 ○○ビル" />
+            <input type="text" name="建物の所在地" placeholder="例）東京都新宿区〇〇 1-2-3 ○○ビル" />
           </div>
           <div class="field">
             <label>建物の種類 <span class="opt">任意</span></label>
-            <select name="building">
+            <select name="建物の種類">
               <option value="">選択してください</option>
               <option>オフィスビル</option>
               <option>店舗・商業施設</option>
@@ -1059,7 +1062,7 @@
           </div>
           <div class="field">
             <label>ご希望の清掃 <span class="opt">任意</span></label>
-            <select name="service">
+            <select name="ご希望の清掃">
               <option value="">選択してください</option>
               <option>日常清掃（定期）</option>
               <option>定期清掃（月1回など）</option>
@@ -1074,7 +1077,7 @@
           </div>
           <div class="field full">
             <label>ご相談内容・ご質問 <span class="opt">任意</span></label>
-            <textarea name="message" placeholder="例）月1回の定期清掃を検討しています。広さは80坪ほどで、現状のお見積りを比較したいです。"></textarea>
+            <textarea name="ご相談内容・ご質問" placeholder="例）月1回の定期清掃を検討しています。広さは80坪ほどで、現状のお見積りを比較したいです。"></textarea>
           </div>
         </div>
         <div class="check-row">
