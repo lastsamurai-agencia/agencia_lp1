@@ -1196,13 +1196,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </script>
 
 <script>
-// 電話ボタンクリック計測（Google Ads）
+// 電話ボタンクリック計測（Google Ads コンバージョン）
 document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
   el.addEventListener('click', function() {
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'phone_button_click', {
-        'event_category': 'contact',
-        'event_label': '電話ボタン'
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18178310779/2MJICMSB9rAcEPuEjNxD'
       });
     }
   });
