@@ -8,6 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=M+PLUS+1p:wght@400;500;700;800;900&family=Klee+One:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18178310779"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18178310779');
+</script>
 <style>
   :root{
     --font-base: 'Noto Sans JP', system-ui, sans-serif;
@@ -1167,6 +1175,10 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     if (res.ok) {
       msg.classList.add('show');
       form.reset();
+      // Google Ads コンバージョン計測（フォーム送信）
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', {'send_to': 'AW-18178310779/E4NFCMkO9LAcEPuEjNxD'});
+      }
       var y = msg.getBoundingClientRect().top + window.scrollY - 120;
       window.scrollTo({ top: y, behavior: 'smooth' });
     } else {
@@ -1179,6 +1191,20 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     btn.disabled = false;
     btn.textContent = '無料お見積り依頼 →';
     alert('送信に失敗しました。お電話（03-6555-1607）またはお時間をおいて再度お試しください。');
+  });
+});
+</script>
+
+<script>
+// 電話ボタンクリック計測（Google Ads）
+document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
+  el.addEventListener('click', function() {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'phone_button_click', {
+        'event_category': 'contact',
+        'event_label': '電話ボタン'
+      });
+    }
   });
 });
 </script>
