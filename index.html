@@ -5,25 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>東京のオフィス・ビル清掃 | 株式会社AGENCIA - 無料お見積り</title>
 <meta name="description" content="東京のオフィス・ビル清掃なら株式会社AGENCIAにお任せください。日常清掃・定期清掃・原状回復・エアコン洗浄まで、有資格者チームがワンストップで対応。最短即日のお見積りは無料です。" />
-<!-- ============================================================
-     計測タグ（GA4 / Google広告 / Yahoo!広告）
-     IDが確定したら sync.py の CONFIG セクションを書き換えてください
-     ============================================================ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K9T55BDPQL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-K9T55BDPQL');
-  gtag('config', 'GADS_CONVERSION_ID');
-</script>
-<!-- Yahoo!広告 サイトジェネラルタグ -->
-<script>
-  window.yjDataLayer = window.yjDataLayer || [];
-  function ytag(){yjDataLayer.push(arguments);}
-  ytag('config', { 'ycid': 'YAHOO_CONVERSION_ID' });
-</script>
-<script async src="https://s.yimg.jp/images/listing/tool/cv/ytag.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=M+PLUS+1p:wght@400;500;700;800;900&family=Klee+One:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -65,7 +46,6 @@
   .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:.02em}
   .logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--c-brand),var(--c-brand-deep));display:grid;place-items:center;color:#fff;font-family:'Inter',sans-serif;font-weight:800;font-size:18px;box-shadow:var(--shadow-sm);overflow:hidden;position:relative;flex:0 0 auto}
   .logo-mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:2px}
-  /* When real logo loads, drop the brand gradient + letter */
   .logo-mark:has(img){background:#fff;padding:0;border:1px solid var(--c-line)}
   .logo-mark:has(img) > :not(img){display:none}
   footer .logo-mark:has(img){border-color:rgba(255,255,255,.18)}
@@ -232,7 +212,6 @@
   .flow-step p{margin:0;font-size:12.5px;color:var(--c-ink-3);line-height:1.7}
   .flow-step::after{content:"";position:absolute;right:-10px;top:50%;width:0;height:0;border:8px solid transparent;border-left-color:var(--c-brand);transform:translateY(-50%);z-index:1}
   .flow-step:last-child::after{display:none}
-  /* Vertical chevron for stacked (mobile) layout — only when grid is single-column */
   .flow-step .arrow-down{display:none}
 
   /* === CTA banner === */
@@ -338,7 +317,6 @@
     .pain-arrow{font-size:26px;margin:0 0 24px}
     .svc-grid{grid-template-columns:repeat(2,1fr)}
     .flow-step::after{display:none}
-    /* Reason card — tablet: keep readable spacing */
     .reason-card{grid-template-columns:1fr;padding:26px 24px;gap:16px}
     .reason-num{display:flex;align-items:baseline;gap:12px;line-height:1}
     .reason-num small{margin-bottom:0;padding:5px 10px;background:var(--c-brand-soft);border-radius:6px;color:var(--c-brand-deep);font-size:11px}
@@ -362,7 +340,6 @@
 
   /* Smaller phones */
   @media (max-width: 480px){
-    /* === Mobile hero: image-dominant, impactful === */
     .hero{padding:0;background:var(--c-bg);min-height:auto}
     .hero.has-bg::after{
       background:
@@ -383,8 +360,6 @@
       font-size:12.5px;font-weight:700;padding:8px 14px;
       align-self:flex-start;
     }
-
-    /* Mobile: HUGE headline, white on dark overlay */
     .hero h1{
       font-size:42px;line-height:1.18;
       margin:18px 0 18px;letter-spacing:.005em;
@@ -400,11 +375,7 @@
       text-shadow:0 1px 8px rgba(0,0,0,.4);
     }
     .hero p.lead br{display:none}
-
-    /* Hide secondary hero-art card on mobile — bg image already provides visual */
     .hero-art{display:none}
-
-    /* Mobile bullets: chip-style on hero overlay */
     .hero-bullets{gap:8px;margin-bottom:24px}
     .hero-bullets li{
       background:rgba(255,255,255,.95);
@@ -412,8 +383,6 @@
       padding:8px 12px;font-size:12.5px;
       box-shadow:0 4px 10px rgba(0,0,0,.15);
     }
-
-    /* Mobile CTAs — massive & full-width */
     .hero-ctas{flex-direction:column;align-items:stretch;gap:14px;width:100%}
     .hero-ctas .btn{
       width:100%;padding:20px 22px;font-size:17px;
@@ -430,8 +399,6 @@
     .hero-tel small{font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.85);font-weight:600}
     .hero-tel a{font-size:30px;letter-spacing:.02em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.3)}
     .hero-tel .hours{font-size:11px;color:rgba(255,255,255,.7)}
-
-    /* Trust strip — moved below hero, full-bleed prominent */
     .hero-trust{
       margin:0;border-radius:0;border-left:0;border-right:0;
       padding:24px 18px;gap:14px;
@@ -444,7 +411,6 @@
     .hero-trust .v{font-size:26px;color:#fff}
     .hero-trust .v .u{font-size:12px;color:rgba(255,255,255,.85)}
     .hero-trust .l{font-size:11.5px;margin-top:6px;color:rgba(255,255,255,.75);font-weight:600}
-
     section{padding:48px 16px}
     .sec-title{margin-bottom:36px}
     .sec-title h2{font-size:24px;line-height:1.45}
@@ -454,7 +420,6 @@
     .logo{font-size:15px;gap:8px}
     .logo-mark{width:32px;height:32px;font-size:16px}
     .logo small{font-size:10px}
-    /* Reason card — stack layout for mobile readability */
     .reason-card{grid-template-columns:1fr;padding:24px 22px;gap:14px}
     .reason-num{display:flex;align-items:baseline;gap:10px;line-height:1}
     .reason-num small{margin-bottom:0;font-size:11px;letter-spacing:.18em;padding:5px 10px;background:var(--c-brand-soft);border-radius:6px;color:var(--c-brand-deep)}
@@ -467,7 +432,6 @@
     .pain-arrow{font-size:24px;margin:0 0 22px}
     .pain-answer{padding:24px 18px}
     .pain-answer h3{font-size:18px;line-height:1.55}
-    /* Flow: vertical layout — show downward arrow between cards */
     .flow-step{padding:18px 18px;position:relative}
     .flow-step .arrow-down{display:block;position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);width:0;height:0;border:8px solid transparent;border-top-color:var(--c-brand);z-index:2}
     .flow-step:last-child .arrow-down{display:none}
@@ -500,17 +464,16 @@
     .foot-bottom{font-size:11px;flex-direction:column;text-align:center}
   }
 
-  /* Anchors offset */
   [id]{scroll-margin-top:80px}
 </style>
 </head>
 <body>
 
 <!-- Header -->
-<header class="topbar" data-screen-label="Header">
+<header class="topbar">
   <div class="topbar-inner">
     <a href="#top" class="logo" aria-label="株式会社AGENCIA">
-      <span class="logo-mark" data-img="project/images/logo.svg,project/images/logo.png">A</span>
+      <span class="logo-mark" data-img="images/logo.svg,images/logo.png">A</span>
       <span>株式会社AGENCIA<small>清掃のことならお任せ下さい！</small></span>
     </a>
     <div class="topbar-right">
@@ -523,7 +486,7 @@
           <div class="tel-meta">10:00〜18:00 / 土日定休</div>
         </div>
       </div>
-      <a href="#contact" class="btn btn-cta btn-sm cta-text">無料お見積り <span class="arr">→</span></a>
+      <a href="#contact" class="btn btn-cta btn-sm">無料お見積り <span class="arr">→</span></a>
     </div>
   </div>
 </header>
@@ -531,8 +494,8 @@
 <a id="top"></a>
 
 <!-- Hero -->
-<section class="hero" data-screen-label="Hero">
-  <div class="hero-bg" data-bg="project/images/hero-bg.jpg"></div>
+<section class="hero">
+  <div class="hero-bg" data-bg="images/hero-bg.jpg"></div>
   <div class="hero-inner">
     <div>
       <div class="hero-eyebrow">
@@ -555,7 +518,7 @@
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.62 0.14 160)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 柔軟対応可能</li>
       </ul>
       <div class="hero-ctas">
-        <a href="#contact" class="btn btn-cta cta-text">無料お見積り依頼 <span class="arr">→</span></a>
+        <a href="#contact" class="btn btn-cta">無料お見積り依頼 <span class="arr">→</span></a>
         <div class="hero-tel">
           <small>お電話でのお問い合わせ</small>
           <a href="tel:0365551607">03-6555-1607</a>
@@ -564,8 +527,8 @@
       </div>
     </div>
 
-    <div class="hero-art" aria-hidden="true" data-img="project/images/hero.jpg">
-      <div class="ph"><span>HERO_IMAGE / images/hero.jpg</span></div>
+    <div class="hero-art" aria-hidden="true" data-img="images/hero.jpg">
+      <div class="ph"><span>HERO_IMAGE</span></div>
       <div class="hero-badge">
         <div class="num">No.1</div>
         <div class="lab">東京の柔軟対応<br>清掃パートナー</div>
@@ -587,7 +550,7 @@
 </section>
 
 <!-- Pain points -->
-<section class="pain" id="pain" data-screen-label="Pain">
+<section class="pain" id="pain">
   <div class="container">
     <div class="sec-title">
       <span class="en">Problems</span>
@@ -610,7 +573,7 @@
 </section>
 
 <!-- Reasons -->
-<section id="reasons" data-screen-label="Reasons">
+<section id="reasons">
   <div class="container">
     <div class="sec-title">
       <span class="en">Reasons</span>
@@ -651,7 +614,7 @@
 </section>
 
 <!-- Services -->
-<section class="services" id="services" data-screen-label="Services">
+<section class="services" id="services">
   <div class="container">
     <div class="sec-title">
       <span class="en">Services</span>
@@ -660,35 +623,35 @@
     </div>
     <div class="svc-grid">
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-01.jpg"><span>SVC_01 / service-01.jpg</span></div>
+        <div class="svc-img" data-img="images/service-01.jpg"><span>service-01.jpg</span></div>
         <div class="svc-body"><h4>日常清掃（定期）</h4><p>週1〜毎日まで頻度を自由設計。共用部の美観を維持し、入居者満足度を高めます。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-02.jpg"><span>SVC_02 / service-02.jpg</span></div>
+        <div class="svc-img" data-img="images/service-02.jpg"><span>service-02.jpg</span></div>
         <div class="svc-body"><h4>定期清掃（月1〜）</h4><p>床のポリッシャー洗浄・ワックスがけなど、日常では落とせない汚れを徹底クリーニング。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-03.jpg"><span>SVC_03 / service-03.jpg</span></div>
+        <div class="svc-img" data-img="images/service-03.jpg"><span>service-03.jpg</span></div>
         <div class="svc-body"><h4>トイレ清掃</h4><p>水回りの除菌・消臭・尿石除去まで丁寧に対応。共用トイレの清潔感を最重要視。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-04.jpg"><span>SVC_04 / service-04.jpg</span></div>
+        <div class="svc-img" data-img="images/service-04.jpg"><span>service-04.jpg</span></div>
         <div class="svc-body"><h4>ガラス清掃</h4><p>窓ガラス・サッシ・外壁の高所作業まで。建物全体の印象を一段引き上げます。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-05.jpg"><span>SVC_05 / service-05.jpg</span></div>
+        <div class="svc-img" data-img="images/service-05.jpg"><span>service-05.jpg</span></div>
         <div class="svc-body"><h4>カーペット清掃</h4><p>シミ抜き・リンスクリーニングで繊維を蘇らせ、空気環境までリフレッシュ。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-06.jpg"><span>SVC_06 / service-06.jpg</span></div>
+        <div class="svc-img" data-img="images/service-06.jpg"><span>service-06.jpg</span></div>
         <div class="svc-body"><h4>排水管洗浄</h4><p>マンション・店舗の排水トラブルを未然に。高圧洗浄で詰まりとニオイを解消。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-07.jpg"><span>SVC_07 / service-07.jpg</span></div>
+        <div class="svc-img" data-img="images/service-07.jpg"><span>service-07.jpg</span></div>
         <div class="svc-body"><h4>原状回復</h4><p>退去・移転時の原状回復をワンストップで。次の入居者を迎える環境を素早く整えます。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="project/images/service-08.jpg"><span>SVC_08 / service-08.jpg</span></div>
+        <div class="svc-img" data-img="images/service-08.jpg"><span>service-08.jpg</span></div>
         <div class="svc-body"><h4>スポット清掃</h4><p>「ここだけ・1回だけ」もOK。換気扇・エアコン・厨房の特殊洗浄もお任せください。</p></div>
       </div>
     </div>
@@ -696,7 +659,7 @@
 </section>
 
 <!-- Pricing -->
-<section id="price" data-screen-label="Pricing">
+<section id="price">
   <div class="container">
     <div class="sec-title">
       <span class="en">Pricing</span>
@@ -759,14 +722,14 @@
 </section>
 
 <!-- Mid CTA banner -->
-<section class="cta-banner" data-screen-label="MidCTA" style="padding:64px 24px">
+<section class="cta-banner" style="padding:64px 24px">
   <div class="cta-inner">
     <div>
       <h3>まずは無料で、現場に合わせた<br>最適プランをご提案します。</h3>
       <p>清掃頻度がわからない方も大丈夫。建物の状況をうかがいながら、無駄のないプランをご案内します。</p>
     </div>
     <div class="cta-actions">
-      <a href="#contact" class="btn btn-white cta-text">無料お見積り依頼 <span class="arr">→</span></a>
+      <a href="#contact" class="btn btn-white">無料お見積り依頼 <span class="arr">→</span></a>
       <div class="tel-block">
         <small>お電話でのご相談</small>
         <a href="tel:0365551607">03-6555-1607</a>
@@ -777,7 +740,7 @@
 </section>
 
 <!-- Before / After -->
-<section class="ba" id="ba" data-screen-label="BeforeAfter">
+<section class="ba" id="ba">
   <div class="container">
     <div class="sec-title">
       <span class="en">Before / After</span>
@@ -787,8 +750,8 @@
     <div class="ba-grid">
       <div class="ba-card">
         <div class="ba-pair">
-          <div class="ba-img" data-img="project/images/before-01.jpg"><span class="tag">BEFORE</span><span class="ph-lbl">before-01.jpg</span></div>
-          <div class="ba-img after" data-img="project/images/after-01.jpg"><span class="tag">AFTER</span><span class="ph-lbl">after-01.jpg</span></div>
+          <div class="ba-img" data-img="images/before-01.jpg"><span class="tag">BEFORE</span></div>
+          <div class="ba-img after" data-img="images/after-01.jpg"><span class="tag">AFTER</span></div>
         </div>
         <div class="ba-body">
           <h4>厨房通路の頑固な油汚れを特殊洗浄</h4>
@@ -799,8 +762,8 @@
 
       <div class="ba-card">
         <div class="ba-pair">
-          <div class="ba-img" data-img="project/images/before-02.jpg"><span class="tag">BEFORE</span><span class="ph-lbl">before-02.jpg</span></div>
-          <div class="ba-img after" data-img="project/images/after-02.jpg"><span class="tag">AFTER</span><span class="ph-lbl">after-02.jpg</span></div>
+          <div class="ba-img" data-img="images/before-02.jpg"><span class="tag">BEFORE</span></div>
+          <div class="ba-img after" data-img="images/after-02.jpg"><span class="tag">AFTER</span></div>
         </div>
         <div class="ba-body">
           <h4>オフィス共用部の床を剥離洗浄＋WAX</h4>
@@ -811,8 +774,8 @@
 
       <div class="ba-card">
         <div class="ba-pair">
-          <div class="ba-img" data-img="project/images/before-03.jpg"><span class="tag">BEFORE</span><span class="ph-lbl">before-03.jpg</span></div>
-          <div class="ba-img after" data-img="project/images/after-03.jpg"><span class="tag">AFTER</span><span class="ph-lbl">after-03.jpg</span></div>
+          <div class="ba-img" data-img="images/before-03.jpg"><span class="tag">BEFORE</span></div>
+          <div class="ba-img after" data-img="images/after-03.jpg"><span class="tag">AFTER</span></div>
         </div>
         <div class="ba-body">
           <h4>業務用エアコンの分解洗浄</h4>
@@ -823,8 +786,8 @@
 
       <div class="ba-card">
         <div class="ba-pair">
-          <div class="ba-img" data-img="project/images/before-04.jpg"><span class="tag">BEFORE</span><span class="ph-lbl">before-04.jpg</span></div>
-          <div class="ba-img after" data-img="project/images/after-04.jpg"><span class="tag">AFTER</span><span class="ph-lbl">after-04.jpg</span></div>
+          <div class="ba-img" data-img="images/before-04.jpg"><span class="tag">BEFORE</span></div>
+          <div class="ba-img after" data-img="images/after-04.jpg"><span class="tag">AFTER</span></div>
         </div>
         <div class="ba-body">
           <h4>マンション共用部の床洗浄</h4>
@@ -837,7 +800,7 @@
 </section>
 
 <!-- Voice -->
-<section id="voice" data-screen-label="Voice">
+<section id="voice">
   <div class="container">
     <div class="sec-title">
       <span class="en">Voice</span>
@@ -877,7 +840,7 @@
 </section>
 
 <!-- Flow -->
-<section class="flow" id="flow" data-screen-label="Flow">
+<section class="flow" id="flow">
   <div class="container">
     <div class="sec-title">
       <span class="en">Flow</span>
@@ -920,7 +883,7 @@
 </section>
 
 <!-- FAQ -->
-<section id="faq" data-screen-label="FAQ">
+<section id="faq">
   <div class="container">
     <div class="sec-title">
       <span class="en">FAQ</span>
@@ -974,7 +937,7 @@
 </section>
 
 <!-- Company -->
-<section class="company" id="company" data-screen-label="Company">
+<section class="company" id="company">
   <div class="container">
     <div class="sec-title">
       <span class="en">Company</span>
@@ -1011,7 +974,7 @@
 </section>
 
 <!-- Contact form -->
-<section id="contact" data-screen-label="Contact">
+<section id="contact">
   <div class="container">
     <div class="sec-title">
       <span class="en">Contact</span>
@@ -1023,34 +986,31 @@
         ✓ お問い合わせありがとうございます。<br>
         担当者より1営業日以内にご連絡いたします。
       </div>
-      <form id="contactForm" novalidate>
-        <!-- Formspree 日本語設定 -->
-        <input type="hidden" name="_subject" value="【お見積り依頼】株式会社AGENCIAへのお問い合わせ" />
-        <input type="hidden" name="_language" value="ja" />
+      <form id="contactForm" action="https://formspree.io/f/mojbedne" method="POST" novalidate>
         <div class="form-grid">
           <div class="field">
             <label>会社名・建物名 <span class="req">必須</span></label>
-            <input type="text" name="会社名・建物名" required placeholder="例）株式会社サンプル / ○○ビル" />
+            <input type="text" name="company" required placeholder="例）株式会社サンプル / ○○ビル" />
           </div>
           <div class="field">
             <label>ご担当者名 <span class="req">必須</span></label>
-            <input type="text" name="ご担当者名" required placeholder="例）山田 太郎" />
+            <input type="text" name="name" required placeholder="例）山田 太郎" />
           </div>
           <div class="field">
             <label>電話番号 <span class="req">必須</span></label>
-            <input type="tel" name="電話番号" required placeholder="例）03-1234-5678" />
+            <input type="tel" name="tel" required placeholder="例）03-1234-5678" />
           </div>
           <div class="field">
             <label>メールアドレス <span class="req">必須</span></label>
-            <input type="email" name="メールアドレス" required placeholder="例）name@example.com" />
+            <input type="email" name="email" required placeholder="例）name@example.com" />
           </div>
           <div class="field full">
             <label>建物の所在地 <span class="opt">任意</span></label>
-            <input type="text" name="建物の所在地" placeholder="例）東京都新宿区〇〇 1-2-3 ○○ビル" />
+            <input type="text" name="address" placeholder="例）東京都新宿区〇〇 1-2-3 ○○ビル" />
           </div>
           <div class="field">
             <label>建物の種類 <span class="opt">任意</span></label>
-            <select name="建物の種類">
+            <select name="building">
               <option value="">選択してください</option>
               <option>オフィスビル</option>
               <option>オフィス内</option>
@@ -1063,7 +1023,7 @@
           </div>
           <div class="field">
             <label>ご希望の清掃 <span class="opt">任意</span></label>
-            <select name="ご希望の清掃">
+            <select name="service">
               <option value="">選択してください</option>
               <option>日常清掃</option>
               <option>定期清掃（月1回など）</option>
@@ -1079,14 +1039,14 @@
           </div>
           <div class="field full">
             <label>ご相談内容・ご質問 <span class="opt">任意</span></label>
-            <textarea name="ご相談内容・ご質問" placeholder="例）月1回の定期清掃を検討しています。広さは80坪ほどで、現状のお見積りを比較したいです。"></textarea>
+            <textarea name="message" placeholder="例）月1回の定期清掃を検討しています。広さは80坪ほどで、現状のお見積りを比較したいです。"></textarea>
           </div>
         </div>
         <div class="check-row">
           <label><input type="checkbox" required /> プライバシーポリシーに同意の上、送信します。</label>
         </div>
         <div class="form-submit">
-          <button type="submit" class="btn btn-cta cta-text">無料お見積り依頼 <span class="arr">→</span></button>
+          <button type="submit" class="btn btn-cta">無料お見積り依頼 <span class="arr">→</span></button>
           <div class="privacy-note">※ご入力いただいた個人情報はお問い合わせ対応のみに利用いたします。</div>
         </div>
       </form>
@@ -1095,11 +1055,11 @@
 </section>
 
 <!-- Footer -->
-<footer data-screen-label="Footer">
+<footer>
   <div class="foot-inner">
     <div class="foot-brand">
       <a href="#top" class="logo">
-        <span class="logo-mark" data-img="project/images/logo.svg,project/images/logo.png">A</span>
+        <span class="logo-mark" data-img="images/logo.svg,images/logo.png">A</span>
         <span>株式会社AGENCIA<small>清掃のことならお任せ下さい！</small></span>
       </a>
       <p>東京のオフィス・ビル・店舗・マンションの清掃を、有資格者チームがワンストップでサポート。「清掃で経営課題を解決するパートナー」を目指しています。</p>
@@ -1127,7 +1087,7 @@
   </div>
   <div class="foot-bottom">
     <div>© 株式会社AGENCIA All Rights Reserved.</div>
-    <div>プライバシーポリシー / 特定商取引法に基づく表記</div>
+    <div><a href="privacy.html" style="color:inherit">プライバシーポリシー</a> / 特定商取引法に基づく表記</div>
   </div>
 </footer>
 
@@ -1135,118 +1095,46 @@
 <div class="mobile-cta">
   <div class="row">
     <a href="tel:0365551607" class="m-tel"><small>電話で相談</small><span class="n">03-6555-1607</span></a>
-    <a href="#contact" class="m-cta cta-text">無料お見積り依頼</a>
+    <a href="#contact" class="m-cta">無料お見積り依頼</a>
   </div>
 </div>
 
-<!-- Tweaks -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="project/tweaks-panel.jsx"></script>
-<div id="tweaks-root"></div>
-<script type="text/babel">
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "ctaText": "無料お見積り依頼",
-    "font": "Noto Sans JP"
-  }/*EDITMODE-END*/;
-
-  const FONT_MAP = {
-    "Noto Sans JP": "'Noto Sans JP', system-ui, sans-serif",
-    "Zen Kaku Gothic New": "'Zen Kaku Gothic New', system-ui, sans-serif",
-    "M PLUS 1p": "'M PLUS 1p', system-ui, sans-serif",
-    "Klee One": "'Klee One', serif"
-  };
-
-  function applyTweaks(t){
-    // CTA text — update every element marked with .cta-text, preserving trailing <span class="arr">→</span>
-    document.querySelectorAll('.cta-text').forEach(el => {
-      const arr = el.querySelector('.arr');
-      // Replace all leading text nodes
-      while (el.firstChild && el.firstChild !== arr) el.removeChild(el.firstChild);
-      const textNode = document.createTextNode(t.ctaText + (arr ? ' ' : ''));
-      el.insertBefore(textNode, arr || null);
-    });
-    // Font
-    document.documentElement.style.setProperty('--font-base', FONT_MAP[t.font] || FONT_MAP['Noto Sans JP']);
-  }
-
-  function TweaksApp(){
-    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-    React.useEffect(() => { applyTweaks(t); }, [t]);
-    return (
-      <TweaksPanel title="Tweaks">
-        <TweakSection label="コピー" />
-        <TweakText label="CTAボタンの文言" value={t.ctaText}
-                   onChange={(v) => setTweak('ctaText', v)} />
-        <TweakSection label="タイポグラフィ" />
-        <TweakSelect label="フォント" value={t.font}
-                     options={["Noto Sans JP","Zen Kaku Gothic New","M PLUS 1p","Klee One"]}
-                     onChange={(v) => setTweak('font', v)} />
-      </TweaksPanel>
-    );
-  }
-
-  // Apply defaults on first paint so values persist across reload
-  applyTweaks(TWEAK_DEFAULTS);
-
-  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
-</script>
-
-<!-- フォーム送信（Formspree）・電話クリック計測 -->
 <script>
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var form = this;
-    var data = new FormData(form);
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = this;
+  const btn = form.querySelector('[type="submit"]');
+  const msg = document.getElementById('successMsg');
 
-    fetch('https://formspree.io/f/mojbedne', {
+  btn.disabled = true;
+  btn.textContent = '送信中…';
+
+  try {
+    const res = await fetch(form.action, {
       method: 'POST',
-      body: data,
+      body: new FormData(form),
       headers: { 'Accept': 'application/json' }
-    })
-    .then(function(res) {
-      if (res.ok) {
-        var msg = document.getElementById('successMsg');
-        msg.classList.add('show');
-        form.reset();
-        var y = msg.getBoundingClientRect().top + window.scrollY - 120;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'generate_lead', { event_category: 'form', event_label: 'contact_form' });
-          gtag('event', 'conversion', { send_to: 'GADS_CONVERSION_ID/GADS_FORM_LABEL' });
-        }
-        if (typeof ytag !== 'undefined') {
-          ytag('event', 'yss_conversion', { 'ycid': 'YAHOO_CONVERSION_ID', 'label': 'YAHOO_FORM_LABEL' });
-        }
-      } else {
-        alert('送信に失敗しました。お電話（03-6555-1607）でもお気軽にご連絡ください。');
-      }
-    })
-    .catch(function() {
-      alert('送信に失敗しました。お電話（03-6555-1607）でもお気軽にご連絡ください。');
     });
-  });
 
-  document.querySelectorAll('a[href="tel:0365551607"]').forEach(function(el) {
-    el.addEventListener('click', function() {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'call_click', { event_category: 'phone', event_label: '0365551607' });
-        gtag('event', 'conversion', { send_to: 'GADS_CONVERSION_ID/GADS_PHONE_LABEL' });
-      }
-      if (typeof ytag !== 'undefined') {
-        ytag('event', 'yss_conversion', { 'ycid': 'YAHOO_CONVERSION_ID', 'label': 'YAHOO_PHONE_LABEL' });
-      }
-    });
-  });
+    if (res.ok) {
+      msg.classList.add('show');
+      form.reset();
+      const y = msg.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    } else {
+      alert('送信に失敗しました。お電話（03-6555-1607）またはお時間をおいて再度お試しください。');
+      btn.disabled = false;
+      btn.textContent = '無料お見積り依頼 →';
+    }
+  } catch(err) {
+    alert('通信エラーが発生しました。お電話（03-6555-1607）またはお時間をおいて再度お試しください。');
+    btn.disabled = false;
+    btn.textContent = '無料お見積り依頼 →';
+  }
+});
 </script>
 
-
-
 <script>
-// Probe each [data-img] target; only insert <img> if file actually exists.
-// data-img accepts comma-separated fallback chain (e.g. "logo.svg,logo.png").
 document.querySelectorAll('[data-img]').forEach(function(el){
   var urls = (el.getAttribute('data-img') || '').split(',').map(function(s){return s.trim();}).filter(Boolean);
   function tryNext(){
@@ -1264,7 +1152,6 @@ document.querySelectorAll('[data-img]').forEach(function(el){
   tryNext();
 });
 
-// [data-bg] -> set as background-image when file actually exists.
 document.querySelectorAll('[data-bg]').forEach(function(el){
   var url = el.getAttribute('data-bg');
   if(!url) return;
@@ -1272,7 +1159,6 @@ document.querySelectorAll('[data-bg]').forEach(function(el){
   probe.onload = function(){
     el.style.backgroundImage = 'url("' + url + '")';
     el.classList.add('is-loaded');
-    // Mark parent section so overlay activates
     var section = el.closest('.hero');
     if(section) section.classList.add('has-bg');
   };
