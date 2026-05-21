@@ -191,16 +191,25 @@
   .ba-chip{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--c-bg-tint-2);color:var(--c-brand-deep)}
 
   /* === Voice / Testimonials === */
-  .voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .voice-card{background:#fff;border-radius:var(--r-lg);padding:30px 26px;border:1px solid var(--c-line);box-shadow:var(--shadow-sm);position:relative}
+  .voice-carousel{position:relative;overflow:hidden}
+  .voice-track{display:flex;gap:22px;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+  .voice-card{flex:0 0 calc(33.333% - 15px);background:#fff;border-radius:var(--r-lg);padding:30px 26px;border:1px solid var(--c-line);box-shadow:var(--shadow-sm);position:relative}
   .voice-card::before{content:"\201C";position:absolute;top:6px;right:22px;font-family:Georgia,serif;font-size:80px;color:var(--c-brand-soft);line-height:1}
   .voice-card .stars{color:var(--c-accent);font-size:15px;letter-spacing:.1em;margin-bottom:10px}
   .voice-card h4{margin:0 0 12px;font-size:17px;font-weight:800;line-height:1.5;color:var(--c-ink);position:relative;z-index:1}
   .voice-card p{margin:0;font-size:13.5px;color:var(--c-ink-2);line-height:1.85}
   .voice-meta{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:18px;border-top:1px solid var(--c-line)}
-  .voice-avt{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--c-brand-soft),var(--c-bg-tint-2));display:grid;place-items:center;color:var(--c-brand-deep);font-weight:700;font-size:15px;font-family:'Inter',sans-serif}
+  .voice-avt{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--c-brand-soft),var(--c-bg-tint-2));display:grid;place-items:center;color:var(--c-brand-deep);font-weight:700;font-size:15px;font-family:'Inter',sans-serif;flex:0 0 auto}
   .voice-meta .who{font-size:13px;font-weight:700;color:var(--c-ink)}
   .voice-meta .who small{display:block;font-size:11.5px;font-weight:500;color:var(--c-ink-3);margin-top:2px}
+  .voice-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:32px}
+  .voice-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--c-line);background:#fff;cursor:pointer;display:grid;place-items:center;color:var(--c-brand-deep);box-shadow:var(--shadow-sm);transition:background .2s,border-color .2s}
+  .voice-btn:hover{background:var(--c-brand-soft);border-color:var(--c-brand)}
+  .voice-dots{display:flex;gap:8px}
+  .voice-dot{width:8px;height:8px;border-radius:50%;background:var(--c-line-2);cursor:pointer;transition:background .25s,width .25s}
+  .voice-dot.active{background:var(--c-brand-deep);width:22px;border-radius:4px}
+  @media(max-width:960px){.voice-card{flex:0 0 calc(50% - 11px)}}
+  @media(max-width:480px){.voice-card{flex:0 0 100%;padding:24px 20px}}
 
   /* === Flow === */
   .flow{background:var(--c-bg-tint)}
@@ -807,34 +816,72 @@
       <h2>お客様の <span class="hi">声</span></h2>
       <p>オフィスビル管理会社様・店舗オーナー様・マンション管理組合様など、さまざまなお客様からご支持をいただいています。</p>
     </div>
-    <div class="voice-grid">
-      <div class="voice-card">
-        <div class="stars">★★★★★</div>
-        <h4>「依頼から現地調査までが早く、見積りもわかりやすかった」</h4>
-        <p>急な原状回復で連絡したのですが、翌日には現地に来てくださり、その場で概算もいただけました。スピード感と説明の丁寧さが決め手で、その後も定期清掃をお願いしています。</p>
-        <div class="voice-meta">
-          <div class="voice-avt">T.K</div>
-          <div class="who">オフィスビル管理会社 様<small>東京都・ビル管理担当</small></div>
+    <div class="voice-carousel" id="voiceCarousel">
+      <div class="voice-track" id="voiceTrack">
+        <div class="voice-card">
+          <div class="stars">★★★★★</div>
+          <h4>「依頼から現地調査までが早く、見積りもわかりやすかった」</h4>
+          <p>急な原状回復で連絡したのですが、翌日には現地に来てくださり、その場で概算もいただけました。スピード感と説明の丁寧さが決め手で、その後も定期清掃をお願いしています。</p>
+          <div class="voice-meta">
+            <div class="voice-avt">T.K</div>
+            <div class="who">オフィスビル管理会社 様<small>東京都・ビル管理担当</small></div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="stars">★★★★★</div>
+          <h4>「清掃頻度を柔軟に組み替えてもらえて助かっています」</h4>
+          <p>店舗の繁忙期と閑散期で必要な清掃量が変わるのですが、その都度プランを調整いただけるので無駄がありません。スタッフの方の身だしなみや挨拶も気持ちが良いです。</p>
+          <div class="voice-meta">
+            <div class="voice-avt">M.S</div>
+            <div class="who">飲食チェーン 様<small>東京都・店舗運営</small></div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="stars">★★★★★</div>
+          <h4>「住人からの苦情が減り、価格にも納得しています」</h4>
+          <p>共用部の清掃と排水管洗浄をまとめてお願いしています。以前の業者より対応が丁寧で、住人の方からの苦情がほぼなくなりました。コスト面の提案もありがたかったです。</p>
+          <div class="voice-meta">
+            <div class="voice-avt">H.A</div>
+            <div class="who">マンション管理組合 様<small>東京都・理事長</small></div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="stars">★★★★★</div>
+          <h4>「院内の清潔感が上がり、患者様からも好評です」</h4>
+          <p>クリニックの待合室・トイレ・処置室を定期清掃でお願いしています。医療施設ならではの衛生基準をしっかり理解したうえで対応してくださり、スタッフ一同安心して任せられています。</p>
+          <div class="voice-meta">
+            <div class="voice-avt">Y.N</div>
+            <div class="who">内科クリニック 様<small>東京都・院長</small></div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="stars">★★★★★</div>
+          <h4>「エアコン洗浄後、空調効率が明らかに改善しました」</h4>
+          <p>事務所の業務用エアコン4台を分解洗浄してもらいました。作業前後の違いが一目瞭然で、夏場の電気代も下がりました。見積りも明確で追加費用なしだったのも安心でした。</p>
+          <div class="voice-meta">
+            <div class="voice-avt">K.T</div>
+            <div class="who">中小企業オフィス 様<small>東京都・総務担当</small></div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="stars">★★★★★</div>
+          <h4>「原状回復を短期間でまとめてお願いでき、助かりました」</h4>
+          <p>テナント退去後の原状回復を急ぎでお願いしたのですが、床・壁・水回り・エアコンまでワンストップで対応していただき、予定通り次の入居者を迎えることができました。</p>
+          <div class="voice-meta">
+            <div class="voice-avt">R.O</div>
+            <div class="who">商業施設オーナー 様<small>東京都・不動産管理</small></div>
+          </div>
         </div>
       </div>
-      <div class="voice-card">
-        <div class="stars">★★★★★</div>
-        <h4>「清掃頻度を柔軟に組み替えてもらえて助かっています」</h4>
-        <p>店舗の繁忙期と閑散期で必要な清掃量が変わるのですが、その都度プランを調整いただけるので無駄がありません。スタッフの方の身だしなみや挨拶も気持ちが良いです。</p>
-        <div class="voice-meta">
-          <div class="voice-avt">M.S</div>
-          <div class="who">飲食チェーン 様<small>東京都・店舗運営</small></div>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="stars">★★★★★</div>
-        <h4>「住人からの苦情が減り、価格にも納得しています」</h4>
-        <p>共用部の清掃と排水管洗浄をまとめてお願いしています。以前の業者より対応が丁寧で、住人の方からの苦情がほぼなくなりました。コスト面の提案もありがたかったです。</p>
-        <div class="voice-meta">
-          <div class="voice-avt">H.A</div>
-          <div class="who">マンション管理組合 様<small>東京都・理事長</small></div>
-        </div>
-      </div>
+    </div>
+    <div class="voice-nav">
+      <button class="voice-btn" id="voicePrev" aria-label="前へ">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="voice-dots" id="voiceDots"></div>
+      <button class="voice-btn" id="voiceNext" aria-label="次へ">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -1135,6 +1182,72 @@ document.getElementById('contactForm').addEventListener('submit', async function
 </script>
 
 <script>
+// Voice carousel
+(function(){
+  var track = document.getElementById('voiceTrack');
+  var dotsWrap = document.getElementById('voiceDots');
+  if(!track) return;
+
+  var cards = track.querySelectorAll('.voice-card');
+  var total = cards.length;
+  var current = 0;
+  var timer;
+
+  function perView(){
+    if(window.innerWidth <= 480) return 1;
+    if(window.innerWidth <= 960) return 2;
+    return 3;
+  }
+
+  function pages(){ return Math.ceil(total / perView()); }
+
+  function buildDots(){
+    dotsWrap.innerHTML = '';
+    var n = pages();
+    for(var i = 0; i < n; i++){
+      var d = document.createElement('button');
+      d.className = 'voice-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', (i+1) + 'ページ目');
+      d.dataset.i = i;
+      d.addEventListener('click', function(){ goTo(+this.dataset.i); });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function goTo(page){
+    var n = pages();
+    current = (page + n) % n;
+    var offset = current * perView();
+    if(offset >= total) offset = total - perView();
+    var cardWidth = cards[0].getBoundingClientRect().width;
+    var gap = 22;
+    track.style.transform = 'translateX(-' + (offset * (cardWidth + gap)) + 'px)';
+    dotsWrap.querySelectorAll('.voice-dot').forEach(function(d, i){
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+
+  function startAuto(){ timer = setInterval(next, 4500); }
+  function stopAuto(){ clearInterval(timer); }
+
+  document.getElementById('voiceNext').addEventListener('click', function(){ stopAuto(); next(); startAuto(); });
+  document.getElementById('voicePrev').addEventListener('click', function(){ stopAuto(); prev(); startAuto(); });
+
+  var carousel = document.getElementById('voiceCarousel');
+  carousel.addEventListener('mouseenter', stopAuto);
+  carousel.addEventListener('mouseleave', startAuto);
+  carousel.addEventListener('touchstart', stopAuto, {passive:true});
+  carousel.addEventListener('touchend', startAuto, {passive:true});
+
+  window.addEventListener('resize', function(){ buildDots(); goTo(0); });
+
+  buildDots();
+  startAuto();
+})();
+
 document.querySelectorAll('[data-img]').forEach(function(el){
   var urls = (el.getAttribute('data-img') || '').split(',').map(function(s){return s.trim();}).filter(Boolean);
   function tryNext(){
