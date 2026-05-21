@@ -1,6 +1,70 @@
 # 株式会社AGENCIA Google・Yahoo広告 LP タスク管理
 
-最終更新: 2026-05-18
+最終更新: 2026-05-21
+
+---
+
+## ⏭️ 明日やること（ここから再開）
+
+### 【STEP 1】広告タグのID設定 ← 最優先
+> 各広告アカウントを作成してIDを取得し、「タグIDを設定して」と依頼するだけでOK
+
+- [ ] **GA4（Googleアナリティクス）**
+  - [analytics.google.com](https://analytics.google.com) でプロパティ作成
+  - 測定ID（`G-XXXXXXXXXX`）を取得 → Claude Codeに共有
+
+- [ ] **Google広告**
+  - [ads.google.com](https://ads.google.com) でアカウント作成
+  - コンバージョン「フォーム送信」「電話クリック」を作成
+  - コンバージョンID・ラベルを取得 → Claude Codeに共有
+
+- [ ] **Yahoo!広告**
+  - [marketing.yahoo.co.jp](https://marketing.yahoo.co.jp) でアカウント作成（法人番号が必要）
+  - コンバージョンIDを取得 → Claude Codeに共有
+
+- [ ] IDが揃ったら「タグIDを設定して」と依頼 → sync → push で完了
+
+### 【STEP 2】カスタムドメインの設定
+> agencia-cleaning.com でLPを公開する
+
+- [ ] ドメイン `agencia-cleaning.com` を取得（お名前.com / ムームードメインなど、年2,000円前後）
+- [ ] ドメイン会社のDNS設定にAレコードを4つ追加
+  ```
+  185.199.108.153
+  185.199.109.153
+  185.199.110.153
+  185.199.111.153
+  ```
+- [ ] GitHubリポジトリ Settings → Pages → Custom domain に `agencia-cleaning.com` を入力
+- [ ] 「CNAMEを戻してpushして」と依頼 → 完了
+
+### 【STEP 3】広告キャンペーン作成
+> タグとドメインが揃ったら出稿スタート
+
+- [ ] Google検索広告キャンペーン作成（キーワード・広告文・予算設定）
+- [ ] Yahoo!検索広告キャンペーン作成
+
+---
+
+## ✅ 完了済み
+
+- [x] LP (index.html) 設計・実装・レスポンシブ対応
+- [x] 画像20枚設置（ロゴ・ヒーロー・サービス・ビフォーアフター）
+- [x] 電話タップ発信対応
+- [x] お問い合わせフォーム実装
+- [x] フォーム送信メールの日本語化（Formspree）
+- [x] フォーム動作テスト済み（メール受信確認済み）
+- [x] 広告タグのコード設置（GA4・Google広告・Yahoo!広告 ※IDは未設定）
+- [x] GitHubリポジトリ作成・push済み
+- [x] GitHub Pages で公開済み → https://lastsamurai-agencia.github.io/agencia_lp1/
+- [x] sync.py / sync.sh：Claude Designとの同期スクリプト作成
+- [x] Claude Designの修正を随時反映する仕組み構築
+
+---
+
+## 📝 次回Claude Codeを開いたら
+
+「TASKS.md を確認して、次回やることから再開して」と言えばすぐ続きから始められます。
 
 ---
 
