@@ -9,7 +9,7 @@ project/index.html を index.html に同期するスクリプト。
 # 広告ID設定（確定したらここを書き換える）
 # ============================================================
 CONFIG = {
-    "GA4_MEASUREMENT_ID":   "GA4_MEASUREMENT_ID",    # 例: G-XXXXXXXXXX
+    "GA4_MEASUREMENT_ID":   "G-K9T55BDPQL",          # GA4 測定ID ✅
     "GADS_CONVERSION_ID":   "GADS_CONVERSION_ID",    # 例: AW-1234567890
     "GADS_FORM_LABEL":      "GADS_FORM_LABEL",       # Google広告フォームラベル
     "GADS_PHONE_LABEL":     "GADS_PHONE_LABEL",      # Google広告電話ラベル
