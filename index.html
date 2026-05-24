@@ -330,7 +330,7 @@
     .hero-trust .v{font-size:26px}
     section{padding:64px 20px}
     .sec-title h2{font-size:28px}
-    .pain-grid, .reasons-grid, .svc-grid, .voice-grid, .flow-grid, .ba-grid, .form-grid, .company-grid, .foot-inner{grid-template-columns:1fr;gap:14px}
+    .pain-grid, .reasons-grid, .svc-grid, .voice-grid, .flow-grid, .ba-grid, .form-grid, .company-grid, .foot-inner, .concept-grid, .vtime-grid{grid-template-columns:1fr;gap:14px}
     .reasons-grid, .voice-grid, .ba-grid, .form-grid, .company-grid, .foot-inner{gap:22px}
     .pain-grid{gap:14px;margin-bottom:24px}
     .pain-arrow{font-size:26px;margin:0 0 24px}
@@ -483,6 +483,28 @@
     .foot-bottom{font-size:11px;flex-direction:column;text-align:center}
   }
 
+  /* === Concept (清掃は接客業) === */
+  .concept{background:linear-gradient(140deg,var(--c-brand-deep) 0%, oklch(0.30 0.08 245) 100%);color:#fff;position:relative;overflow:hidden}
+  .concept::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(255,255,255,.12),transparent 55%),radial-gradient(circle at 12% 92%,rgba(255,255,255,.08),transparent 50%);pointer-events:none}
+  .concept .container{position:relative}
+  .concept .sec-title .en{color:var(--c-brand-soft)}
+  .concept .sec-title h2{color:#fff}
+  .concept .sec-title h2 .hi{color:#fff;background:linear-gradient(180deg,transparent 60%,var(--c-accent) 60%,var(--c-accent) 90%,transparent 90%);padding:0 6px}
+  .concept .sec-title p{color:rgba(255,255,255,.82)}
+  .concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .concept-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:30px 26px}
+  .concept-ic{width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.13);display:grid;place-items:center;color:#fff;margin-bottom:16px}
+  .concept-item h4{margin:0 0 8px;font-size:18px;font-weight:800;color:#fff}
+  .concept-item p{margin:0;font-size:14px;line-height:1.85;color:rgba(255,255,255,.82)}
+
+  /* === Value: Time (清掃で生まれる時間) === */
+  .vtime-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .vtime-card{background:#fff;border:1px solid var(--c-line);border-radius:var(--r-lg);padding:34px 28px;box-shadow:var(--shadow-sm);text-align:center;transition:transform .2s, box-shadow .2s}
+  .vtime-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .vtime-ic{width:62px;height:62px;border-radius:50%;background:var(--c-brand-soft);display:grid;place-items:center;color:var(--c-brand-deep);margin:0 auto 18px}
+  .vtime-card h4{margin:0 0 10px;font-size:18px;font-weight:800;color:var(--c-ink)}
+  .vtime-card p{margin:0;font-size:14px;line-height:1.85;color:var(--c-ink-2)}
+
   [id]{scroll-margin-top:80px}
 </style>
 </head>
@@ -535,6 +557,7 @@
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.62 0.14 160)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 最短即日対応</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.62 0.14 160)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 有資格者在籍</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.62 0.14 160)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 柔軟対応可能</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.62 0.14 160)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 報告もていねい</li>
       </ul>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-cta">無料お見積り依頼 <span class="arr">→</span></a>
@@ -632,6 +655,40 @@
   </div>
 </section>
 
+<!-- Concept: 清掃は接客業 -->
+<section class="concept" id="concept">
+  <div class="container">
+    <div class="sec-title">
+      <span class="en">Our Philosophy</span>
+      <h2>私たちは、清掃を<br><span class="hi">「接客業」</span>だと考えています。</h2>
+      <p>きれいにするのは、当たり前。AGENCIAがそれ以上に大切にしているのは、お客様との“やりとり”です。報告・連絡・相談をていねいに重ね、「任せきれる」関係をつくります。</p>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-item">
+        <div class="concept-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h4>写真付きの作業報告</h4>
+        <p>作業のたびに、実施した内容と気づいた点を写真付きでご報告。建物の状態がいつでも見える化され、オーナー様への説明にもそのまま使えます。</p>
+      </div>
+      <div class="concept-item">
+        <div class="concept-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h4>レスポンスの早い連絡</h4>
+        <p>急なご依頼や予定変更にも、すばやくご連絡。「連絡がつかない」「対応が遅い」というストレスをなくします。</p>
+      </div>
+      <div class="concept-item">
+        <div class="concept-ic" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h4>気軽に話せる関係</h4>
+        <p>清掃の頻度や範囲の見直し、新たなお困りごとまで。担当者がいつでもご相談に応じ、現場に合わせて柔軟に調整します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Services -->
 <section class="services" id="services">
   <div class="container">
@@ -672,6 +729,40 @@
       <div class="svc-card">
         <div class="svc-img" data-img="images/service-08.jpg"><span>service-08.jpg</span></div>
         <div class="svc-body"><h4>スポット清掃</h4><p>「ここだけ・1回だけ」もOK。換気扇・エアコン・厨房の特殊洗浄もお任せください。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Value: 清掃で生まれる時間 -->
+<section class="vtime" id="time">
+  <div class="container">
+    <div class="sec-title">
+      <span class="en">Your Time</span>
+      <h2>清掃を手放した分だけ、<br><span class="hi">本業の時間</span>が生まれる。</h2>
+      <p>「社員が交代で掃除」「来客前にあわてて片付け」——そこに使われている時間は、本来の仕事のための時間です。清掃をAGENCIAに任せれば、その時間がまるごと戻ってきます。</p>
+    </div>
+    <div class="vtime-grid">
+      <div class="vtime-card">
+        <div class="vtime-ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 16.5 8.5 11.5 1 19"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h4>社員が本業に集中できる</h4>
+        <p>掃除に充てていた時間を、売上づくりや顧客対応など、本来の仕事に戻せます。</p>
+      </div>
+      <div class="vtime-card">
+        <div class="vtime-ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>清掃当番・残業をなくす</h4>
+        <p>始業前・終業後の清掃当番がなくなり、社員の負担と残業時間を減らせます。</p>
+      </div>
+      <div class="vtime-card">
+        <div class="vtime-ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h4>いつでも整った印象に</h4>
+        <p>プロが整え続けるので、急な来客でもあわてず、清潔なオフィスでお迎えできます。</p>
       </div>
     </div>
   </div>
