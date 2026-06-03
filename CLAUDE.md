@@ -27,7 +27,12 @@
 ## 技術スタック
 
 - HTML/CSS/JS（フレームワークなし・単一ファイル構成）
-- フォーム: Formspree
+- フォーム送信・メール: **EmailJS に一本化**（Formspreeは撤廃）
+  - Service ID: `service_m916br3`（Gmail連携）
+  - Public Key: `tDEeyowqidTl3JrJU`
+  - 通知メール（AGENCIA宛 info-lp-agencia@languid.work）: テンプレ `template_btme40k`
+  - 自動返信メール（お客様宛）: テンプレ `template_019myqo`
+  - 無料プラン上限: 200通/月（1送信で2通消費 → 実質100件/月）
 - ホスティング: GitHub Pages
 - ドメイン: お名前.com（ネームサーバー: 01.dnsv.jp / 02.dnsv.jp）
 
@@ -58,6 +63,7 @@
 - [x] ファビコン設置
 - [x] お客様の声セクションにアバター画像設置（4枚）
 - [x] レスポンシブ対応（概念セクション・時間セクション）
+- [x] フォーム送信時の自動返信メール＋AGENCIA宛通知メール（EmailJSに一本化）
 - [x] Google広告 戦略設計書・入稿シート作成
 - [x] 週次運用チェックのリマインド設定（月曜9時・Chrome連携自動レポート）
 - [x] Claude in Chrome 連携(検証モード+週次レポート自動化)
