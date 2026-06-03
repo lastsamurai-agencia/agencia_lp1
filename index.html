@@ -11,6 +11,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=M+PLUS+1p:wght@400;500;700;800;900&family=Klee+One:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('tDEeyowqidTl3JrJU');</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K9T55BDPQL"></script>
 <script>
@@ -1266,13 +1269,21 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   btn.disabled = true;
   btn.textContent = '送信中…';
 
+  var formData = new FormData(form);
   fetch('https://formspree.io/f/mojbedne', {
     method: 'POST',
-    body: new FormData(form),
+    body: formData,
     headers: { 'Accept': 'application/json' }
   })
   .then(function(res) {
     if (res.ok) {
+      // 自動返信メール送信（EmailJS）
+      emailjs.send('service_m916br3', 'template_019myqo', {
+        to_name:  formData.get('ご担当者名') || '',
+        reply_to: formData.get('メールアドレス') || '',
+        company:  formData.get('会社名・建物名') || '',
+        tel:      formData.get('電話番号') || ''
+      }).catch(function(){});
       msg.classList.add('show');
       form.reset();
       // Google Ads コンバージョン計測（フォーム送信）
