@@ -1269,34 +1269,32 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   btn.disabled = true;
   btn.textContent = '送信中…';
 
-  var formData = new FormData(form);
-  fetch('https://formspree.io/f/mojbedne', {
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(function(res) {
-    if (res.ok) {
-      // 自動返信メール送信（EmailJS）
-      emailjs.send('service_m916br3', 'template_019myqo', {
-        to_name:  formData.get('ご担当者名') || '',
-        reply_to: formData.get('メールアドレス') || '',
-        company:  formData.get('会社名・建物名') || '',
-        tel:      formData.get('電話番号') || ''
-      }).catch(function(){});
-      msg.classList.add('show');
-      form.reset();
-      // Google Ads コンバージョン計測（フォーム送信）
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'conversion', {'send_to': 'AW-18178310779/E4NFCMKO9LAcEPuEjNxD'});
-      }
-      var y = msg.getBoundingClientRect().top + window.scrollY - 120;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    } else {
-      return res.json().then(function(data) {
-        throw new Error(data.error || 'エラー');
-      });
+  var fd = new FormData(form);
+  var params = {
+    to_name:       fd.get('ご担当者名') || '',
+    reply_to:      fd.get('メールアドレス') || '',
+    company:       fd.get('会社名・建物名') || '',
+    tel:           fd.get('電話番号') || '',
+    address:       fd.get('建物の所在地') || '（未入力）',
+    building_type: fd.get('建物の種類') || '（未選択）',
+    service:       fd.get('ご希望の清掃') || '（未選択）',
+    message:       fd.get('ご相談内容・ご質問') || '（未入力）'
+  };
+
+  // ① AGENCIA宛 通知メール（最重要・リード取りこぼし防止）を先に送信
+  emailjs.send('service_m916br3', 'template_btme40k', params)
+  .then(function() {
+    // ② お客様宛 自動返信メールはベストエフォート（失敗しても完了扱い）
+    emailjs.send('service_m916br3', 'template_019myqo', params).catch(function(){});
+    msg.classList.add('show');
+    form.reset();
+    btn.textContent = '送信が完了しました';
+    // Google Ads コンバージョン計測（フォーム送信）
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', {'send_to': 'AW-18178310779/E4NFCMKO9LAcEPuEjNxD'});
     }
+    var y = msg.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top: y, behavior: 'smooth' });
   })
   .catch(function() {
     btn.disabled = false;
