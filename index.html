@@ -56,7 +56,8 @@
   button{font-family:inherit}
 
   /* === Header === */
-  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--c-line)}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--c-line);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+  .topbar.is-hidden{transform:translateY(-100%)}
   .topbar-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
   .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:.02em}
   .logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--c-brand),var(--c-brand-deep));display:grid;place-items:center;color:#fff;font-family:'Inter',sans-serif;font-weight:800;font-size:18px;box-shadow:var(--shadow-sm);overflow:hidden;position:relative;flex:0 0 auto}
@@ -1405,6 +1406,30 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('送信に失敗しました。お電話（03-6555-1607）またはお時間をおいて再度お試しください。');
   });
 });
+</script>
+
+<script>
+// ヘッダー：下スクロールで隠す／上スクロールで再表示
+(function(){
+  var bar = document.querySelector('.topbar');
+  if(!bar) return;
+  var lastY = window.scrollY;
+  var THRESHOLD = 6;     // 微小な揺れは無視
+  var REVEAL_TOP = 80;   // 最上部付近では常に表示
+  function update(){
+    var y = window.scrollY;
+    var diff = y - lastY;
+    if(y < REVEAL_TOP){
+      bar.classList.remove('is-hidden');           // 最上部は常に表示
+    } else if(diff > THRESHOLD){
+      bar.classList.add('is-hidden');              // 下スクロール → 隠す
+    } else if(diff < -THRESHOLD){
+      bar.classList.remove('is-hidden');           // 上スクロール → 表示
+    }
+    lastY = y;
+  }
+  window.addEventListener('scroll', update, {passive:true});
+})();
 </script>
 
 <script>
