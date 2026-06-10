@@ -185,6 +185,35 @@
   .price-note{padding:20px 22px;background:var(--c-bg-tint);font-size:12.5px;color:var(--c-ink-3);line-height:1.8;border-top:1px solid var(--c-line)}
   .price-note ul{margin:0;padding-left:1.2em}
 
+  /* === 料金シミュレーター === */
+  .sim-wrap{margin-top:36px;background:#fff;border:1px solid var(--c-line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+  .sim-head{background:linear-gradient(180deg,var(--c-brand),var(--c-brand-deep));color:#fff;padding:22px 26px}
+  .sim-head h3{margin:0;font-size:19px;font-weight:800;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+  .sim-head p{margin:6px 0 0;font-size:12.5px;color:rgba(255,255,255,.9);line-height:1.7}
+  .sim-body{padding:28px 26px}
+  .sim-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .sim-tab{flex:1 1 auto;min-width:120px;padding:12px 14px;border:1.5px solid var(--c-line-2);border-radius:10px;background:var(--c-bg);color:var(--c-ink-2);font-size:13.5px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center}
+  .sim-tab:hover{border-color:var(--c-brand)}
+  .sim-tab.active{background:var(--c-brand-soft);border-color:var(--c-brand);color:var(--c-brand-deep)}
+  .sim-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 22px;margin-bottom:24px}
+  .sim-field{display:flex;flex-direction:column;gap:7px}
+  .sim-field.full{grid-column:1/-1}
+  .sim-field label{font-size:13px;font-weight:700;color:var(--c-ink)}
+  .sim-field label small{font-weight:500;color:var(--c-ink-3);margin-left:6px}
+  .sim-field input,.sim-field select{font-family:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--c-line-2);border-radius:10px;background:var(--c-bg);color:var(--c-ink);transition:border-color .15s,box-shadow .15s}
+  .sim-field input:focus,.sim-field select:focus{outline:none;border-color:var(--c-brand);box-shadow:0 0 0 4px oklch(0.58 0.14 232 / .14);background:#fff}
+  .sim-result{background:var(--c-bg-tint);border:1px solid var(--c-line);border-radius:var(--r-md);padding:24px 26px;text-align:center}
+  .sim-result .lbl{font-size:13px;font-weight:700;color:var(--c-ink-3);letter-spacing:.04em}
+  .sim-result .amt{font-family:'Inter',var(--font-base);font-weight:900;font-size:34px;color:var(--c-brand-deep);line-height:1.2;margin:8px 0 4px}
+  .sim-result .amt small{font-size:16px;font-weight:700;color:var(--c-ink-2);margin-left:4px}
+  .sim-result .sub{font-size:12.5px;color:var(--c-ink-3);line-height:1.7}
+  .sim-disclaimer{margin-top:16px;font-size:11.5px;color:var(--c-ink-3);line-height:1.8;text-align:center}
+  @media(max-width:600px){
+    .sim-fields{grid-template-columns:1fr}
+    .sim-result .amt{font-size:27px}
+    .sim-tab{min-width:0;flex:1 1 calc(50% - 4px)}
+  }
+
   /* === Before/After === */
   .ba{background:var(--c-bg-tint)}
   .ba-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px}
@@ -838,6 +867,71 @@
         </ul>
       </div>
     </div>
+
+    <!-- 料金シミュレーター -->
+    <div class="sim-wrap" id="simulator">
+      <div class="sim-head">
+        <h3>⚡ かんたん料金シミュレーター</h3>
+        <p>メニューと条件を選ぶだけで、概算の目安料金がその場でわかります。</p>
+      </div>
+      <div class="sim-body">
+        <div class="sim-tabs" id="simTabs">
+          <button type="button" class="sim-tab active" data-menu="daily">日常清掃<br>（月額・定期）</button>
+          <button type="button" class="sim-tab" data-menu="floor">定期清掃<br>（床洗浄）</button>
+          <button type="button" class="sim-tab" data-menu="ac">業務用<br>エアコン洗浄</button>
+        </div>
+
+        <!-- A) 日常清掃 -->
+        <div class="sim-fields" data-panel="daily">
+          <div class="sim-field">
+            <label>清掃の頻度</label>
+            <select id="dailyFreq">
+              <option value="m1">月1回</option>
+              <option value="m2">月2回</option>
+              <option value="w1" selected>週1回</option>
+              <option value="w2">週2回</option>
+              <option value="w4">週4回</option>
+              <option value="w5">週5回以上</option>
+            </select>
+          </div>
+          <div class="sim-field">
+            <label>1回あたりの作業時間 <small>目安</small></label>
+            <select id="dailyHours">
+              <option value="1" selected>1時間</option>
+              <option value="2">2時間</option>
+              <option value="3">3時間</option>
+              <option value="4">4時間</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- B) 定期清掃（床洗浄） -->
+        <div class="sim-fields" data-panel="floor" style="display:none">
+          <div class="sim-field full">
+            <label>床面積 <small>ポリッシャー洗浄の対象面積（㎡）</small></label>
+            <input type="number" id="floorArea" min="1" step="1" placeholder="例）120" value="120" />
+          </div>
+        </div>
+
+        <!-- C) 業務用エアコン -->
+        <div class="sim-fields" data-panel="ac" style="display:none">
+          <div class="sim-field full">
+            <label>台数 <small>分解洗浄するエアコンの台数</small></label>
+            <input type="number" id="acUnits" min="1" step="1" placeholder="例）3" value="3" />
+          </div>
+        </div>
+
+        <div class="sim-result">
+          <div class="lbl">概算の目安料金（税別）</div>
+          <div class="amt" id="simAmount">¥—</div>
+          <div class="sub" id="simSub"></div>
+        </div>
+        <p class="sim-disclaimer">
+          ※あくまで概算の目安です。実際の料金は建物の状況・作業範囲・時間帯などにより変動します。<br>
+          正式なお見積り・現地調査は<strong style="color:var(--c-brand-deep)">無料</strong>です。気になった方はお気軽にお問い合わせください。
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1302,6 +1396,81 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('送信に失敗しました。お電話（03-6555-1607）またはお時間をおいて再度お試しください。');
   });
 });
+</script>
+
+<script>
+// 料金シミュレーター
+(function(){
+  var tabs = document.getElementById('simTabs');
+  if(!tabs) return;
+  var panels = {
+    daily: document.querySelector('[data-panel="daily"]'),
+    floor: document.querySelector('[data-panel="floor"]'),
+    ac:    document.querySelector('[data-panel="ac"]')
+  };
+  var amountEl = document.getElementById('simAmount');
+  var subEl = document.getElementById('simSub');
+  var current = 'daily';
+
+  function yen(n){ return '¥' + Math.round(n).toLocaleString('ja-JP'); }
+
+  // 頻度別の時間単価と月の回数
+  var DAILY = {
+    m1: { rate:5000, visits:1,  label:'月1回' },
+    m2: { rate:4500, visits:2,  label:'月2回' },
+    w1: { rate:3200, visits:4,  label:'週1回' },
+    w2: { rate:3000, visits:8,  label:'週2回' },
+    w4: { rate:2700, visits:16, label:'週4回' },
+    w5: { rate:2500, visits:20, label:'週5回以上' }
+  };
+
+  function calc(){
+    var low, sub;
+    if(current === 'daily'){
+      var f = DAILY[document.getElementById('dailyFreq').value];
+      var hours = parseFloat(document.getElementById('dailyHours').value) || 1;
+      low = f.rate * hours * f.visits;
+      sub = '1回' + hours + '時間 × 月' + f.visits + '回 ／ ' + yen(f.rate) + '/時（' + f.label + '）';
+    } else if(current === 'floor'){
+      var area = parseFloat(document.getElementById('floorArea').value) || 0;
+      if(area <= 0){ amountEl.textContent='¥—'; subEl.textContent='床面積を入力してください'; return; }
+      // 50㎡まで¥15,000、超過分は¥150/㎡
+      low = 15000 + Math.max(0, area - 50) * 150;
+      sub = '床面積' + area + '㎡（50㎡まで' + yen(15000) + '＋超過分¥150/㎡）';
+    } else { // ac
+      var units = parseInt(document.getElementById('acUnits').value, 10) || 0;
+      if(units <= 0){ amountEl.textContent='¥—'; subEl.textContent='台数を入力してください'; return; }
+      // 1台ごとに20%ずつ段階値引き（下限¥5,000/台）
+      low = 0;
+      for(var i=0; i<units; i++){
+        var unit = Math.max(5000, 25000 * (1 - 0.2 * i));
+        low += unit;
+      }
+      sub = units + '台（2台目以降は1台ごとに20%ずつ割引）';
+    }
+    var high = Math.round(low * 1.3 / 100) * 100;
+    var lowR = Math.round(low / 100) * 100;
+    amountEl.innerHTML = yen(lowR) + ' 〜 ' + yen(high) + (current==='daily' ? '<small>/月</small>' : '');
+    subEl.textContent = sub;
+  }
+
+  // タブ切替
+  tabs.querySelectorAll('.sim-tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.querySelectorAll('.sim-tab').forEach(function(x){ x.classList.remove('active'); });
+      t.classList.add('active');
+      current = t.dataset.menu;
+      Object.keys(panels).forEach(function(k){ panels[k].style.display = (k===current ? '' : 'none'); });
+      calc();
+    });
+  });
+  // 入力変更で再計算
+  ['dailyFreq','dailyHours','floorArea','acUnits'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.addEventListener('input', calc); el.addEventListener('change', calc); }
+  });
+  calc();
+})();
 </script>
 
 <script>
