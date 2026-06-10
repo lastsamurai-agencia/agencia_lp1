@@ -429,7 +429,16 @@
       text-shadow:0 1px 8px rgba(0,0,0,.4);
     }
     .hero p.lead br{display:none}
-    .hero-art{display:none}
+    /* スマホでも代表写真を表示（テキスト直後にカード表示） */
+    .hero-art{
+      display:block;position:relative;
+      aspect-ratio:4/5;width:auto;
+      margin:0 16px 32px;border-radius:var(--r-lg);
+      box-shadow:0 14px 34px rgba(20,40,80,.22);
+    }
+    .hero-badge{top:14px;left:14px;padding:10px 12px}
+    .hero-badge .num{font-size:20px}
+    .hero-stat{bottom:14px;right:14px;padding:12px 14px;max-width:175px}
     .hero-bullets{gap:8px;margin-bottom:24px}
     .hero-bullets li{
       background:rgba(255,255,255,.95);
