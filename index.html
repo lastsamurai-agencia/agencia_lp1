@@ -324,6 +324,14 @@
   .check-row{display:flex;flex-direction:column;gap:10px;margin-top:8px}
   .check-row label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--c-ink-2);cursor:pointer}
   .check-row input{accent-color:var(--c-brand);width:18px;height:18px}
+  /* バリデーション エラー表示 */
+  .field-error{display:none;font-size:12px;font-weight:600;color:var(--c-accent-deep);margin-top:2px}
+  .field.has-error input, .field.has-error select, .field.has-error textarea{border-color:var(--c-accent);background:oklch(0.97 0.03 30)}
+  .field.has-error .field-error{display:block}
+  .check-row.has-error label{color:var(--c-accent-deep)}
+  .check-row.has-error input{outline:2px solid var(--c-accent);outline-offset:2px}
+  .check-row .field-error{margin-top:0}
+  .check-row.has-error .field-error{display:block}
   .form-submit{text-align:center;margin-top:32px}
   .form-submit .btn{padding:20px 56px;font-size:17px}
   .form-success{display:none;padding:28px;background:linear-gradient(135deg, var(--c-brand-soft), var(--c-bg-tint));border-radius:var(--r-lg);text-align:center;color:var(--c-brand-deep);font-weight:700;font-size:16px;line-height:1.7;margin-bottom:24px;border:1px solid var(--c-brand-soft)}
@@ -1246,7 +1254,7 @@
     <div class="form-wrap">
       <div class="form-success" id="successMsg">
         ✓ お問い合わせありがとうございます。<br>
-        担当者より1営業日以内にご連絡いたします。
+        担当者より2営業日以内にご連絡いたします。
       </div>
       <form id="contactForm" novalidate>
         <input type="hidden" name="_subject" value="【お見積り依頼】株式会社AGENCIAへのお問い合わせ" />
@@ -1255,18 +1263,22 @@
           <div class="field">
             <label>会社名・建物名 <span class="req">必須</span></label>
             <input type="text" name="会社名・建物名" required placeholder="例）株式会社サンプル / ○○ビル" />
+            <small class="field-error">会社名・建物名をご入力ください。</small>
           </div>
           <div class="field">
             <label>ご担当者名 <span class="req">必須</span></label>
             <input type="text" name="ご担当者名" required placeholder="例）山田 太郎" />
+            <small class="field-error">ご担当者名をご入力ください。</small>
           </div>
           <div class="field">
             <label>電話番号 <span class="req">必須</span></label>
             <input type="tel" name="電話番号" required placeholder="例）03-1234-5678" />
+            <small class="field-error">電話番号をご入力ください。</small>
           </div>
           <div class="field">
             <label>メールアドレス <span class="req">必須</span></label>
             <input type="email" name="メールアドレス" required placeholder="例）name@example.com" />
+            <small class="field-error">メールアドレスを正しくご入力ください。</small>
           </div>
           <div class="field full">
             <label>建物の所在地 <span class="opt">任意</span></label>
@@ -1308,6 +1320,7 @@
         </div>
         <div class="check-row">
           <label><input type="checkbox" required /> プライバシーポリシーに同意の上、送信します。</label>
+          <small class="field-error">送信するにはプライバシーポリシーへの同意が必要です。</small>
         </div>
         <div class="form-submit">
           <button type="submit" class="btn btn-cta">無料お見積り依頼 <span class="arr">→</span></button>
@@ -1364,48 +1377,90 @@
 </div>
 
 <script>
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var form = this;
+(function(){
+  var form = document.getElementById('contactForm');
+  if(!form) return;
   var btn = form.querySelector('[type="submit"]');
-  var msg = document.getElementById('successMsg');
 
-  btn.disabled = true;
-  btn.textContent = '送信中…';
+  function fieldOf(input){ return input.closest('.field') || input.closest('.check-row'); }
+  function setError(input, on){
+    var f = fieldOf(input);
+    if(f){ f.classList.toggle('has-error', !!on); }
+  }
+  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function isTel(v){ return (v.replace(/[^0-9]/g,'').length) >= 10; } // 数字10桁以上
 
-  var fd = new FormData(form);
-  var params = {
-    to_name:       fd.get('ご担当者名') || '',
-    reply_to:      fd.get('メールアドレス') || '',
-    company:       fd.get('会社名・建物名') || '',
-    tel:           fd.get('電話番号') || '',
-    address:       fd.get('建物の所在地') || '（未入力）',
-    building_type: fd.get('建物の種類') || '（未選択）',
-    service:       fd.get('ご希望の清掃') || '（未選択）',
-    message:       fd.get('ご相談内容・ご質問') || '（未入力）'
-  };
-
-  // ① AGENCIA宛 通知メール（最重要・リード取りこぼし防止）を先に送信
-  emailjs.send('service_m916br3', 'template_btme40k', params)
-  .then(function() {
-    // ② お客様宛 自動返信メールはベストエフォート（失敗しても完了扱い）
-    emailjs.send('service_m916br3', 'template_019myqo', params).catch(function(){});
-    msg.classList.add('show');
-    form.reset();
-    btn.textContent = '送信が完了しました';
-    // Google Ads コンバージョン計測（フォーム送信）
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'conversion', {'send_to': 'AW-18178310779/E4NFCMKO9LAcEPuEjNxD'});
+  // 必須項目の検証ルール
+  function validate(){
+    var firstInvalid = null;
+    function check(input, ok){
+      setError(input, !ok);
+      if(!ok && !firstInvalid){ firstInvalid = input; }
     }
-    var y = msg.getBoundingClientRect().top + window.scrollY - 120;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  })
-  .catch(function() {
-    btn.disabled = false;
-    btn.textContent = '無料お見積り依頼 →';
-    alert('送信に失敗しました。お電話（03-6555-1607）またはお時間をおいて再度お試しください。');
+    var company = form.querySelector('[name="会社名・建物名"]');
+    var name    = form.querySelector('[name="ご担当者名"]');
+    var tel     = form.querySelector('[name="電話番号"]');
+    var email   = form.querySelector('[name="メールアドレス"]');
+    var agree   = form.querySelector('input[type="checkbox"]');
+
+    check(company, company.value.trim() !== '');
+    check(name,    name.value.trim() !== '');
+    check(tel,     isTel(tel.value.trim()));
+    check(email,   isEmail(email.value.trim()));
+    check(agree,   agree.checked);
+    return firstInvalid;
+  }
+
+  // 入力したらその項目のエラーを解除
+  form.querySelectorAll('[name="会社名・建物名"],[name="ご担当者名"],[name="電話番号"],[name="メールアドレス"]').forEach(function(el){
+    el.addEventListener('input', function(){ setError(el, false); });
   });
-});
+  var agreeCb = form.querySelector('input[type="checkbox"]');
+  if(agreeCb){ agreeCb.addEventListener('change', function(){ setError(agreeCb, !agreeCb.checked); }); }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    // バリデーション：必須未入力なら送信せずエラー表示
+    var firstInvalid = validate();
+    if(firstInvalid){
+      var f = fieldOf(firstInvalid);
+      var y = (f || firstInvalid).getBoundingClientRect().top + window.scrollY - 140;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      try { firstInvalid.focus({preventScroll:true}); } catch(_){ firstInvalid.focus(); }
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '送信中…';
+
+    var fd = new FormData(form);
+    var params = {
+      to_name:       fd.get('ご担当者名') || '',
+      reply_to:      fd.get('メールアドレス') || '',
+      company:       fd.get('会社名・建物名') || '',
+      tel:           fd.get('電話番号') || '',
+      address:       fd.get('建物の所在地') || '（未入力）',
+      building_type: fd.get('建物の種類') || '（未選択）',
+      service:       fd.get('ご希望の清掃') || '（未選択）',
+      message:       fd.get('ご相談内容・ご質問') || '（未入力）'
+    };
+
+    // ① AGENCIA宛 通知メール（最重要・リード取りこぼし防止）を先に送信
+    emailjs.send('service_m916br3', 'template_btme40k', params)
+    .then(function() {
+      // ② お客様宛 自動返信メールはベストエフォート（失敗しても完了扱い）
+      emailjs.send('service_m916br3', 'template_019myqo', params).catch(function(){});
+      // お礼ページへ遷移（コンバージョン計測は thanks.html 側で発火）
+      window.location.href = 'thanks.html';
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = '無料お見積り依頼 →';
+      alert('送信に失敗しました。お電話（03-6555-1607）またはお時間をおいて再度お試しください。');
+    });
+  });
+})();
 </script>
 
 <script>
