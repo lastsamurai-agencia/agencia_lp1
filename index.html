@@ -1451,6 +1451,11 @@
     .then(function() {
       // ② お客様宛 自動返信メールはベストエフォート（失敗しても完了扱い）
       emailjs.send('service_m916br3', 'template_019myqo', params).catch(function(){});
+      // ③ Google Chat 通知（Apps Script中継）。遷移中でも確実に送るため sendBeacon を使用
+      try {
+        var CHAT_RELAY_URL = 'https://script.google.com/macros/s/AKfycbzxmCGGLBrCpjB4CRPkeCnnbQCY69KYdN4Piyte5KXqtiy-eoYU9hOyqgDmBgg1gj_Nug/exec';
+        navigator.sendBeacon(CHAT_RELAY_URL, new Blob([JSON.stringify(params)], {type:'text/plain;charset=UTF-8'}));
+      } catch(_) {}
       // お礼ページへ遷移（コンバージョン計測は thanks.html 側で発火）
       window.location.href = 'thanks.html';
     })
