@@ -128,6 +128,49 @@
   .hero-trust .v .u{font-size:14px;font-weight:700;margin-left:2px}
   .hero-trust .l{font-size:12px;color:var(--c-ink-3);font-weight:600;margin-top:8px}
 
+  /* === 定期清掃 訴求バンド === */
+  .teiki{background:linear-gradient(180deg, var(--c-brand-deep), var(--c-brand));color:#fff;padding:72px 24px;position:relative;overflow:hidden}
+  .teiki::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 80% 10%, rgba(255,255,255,.14), transparent 55%);pointer-events:none}
+  .teiki-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
+  .teiki-eyebrow{font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:16px}
+  .teiki h2{font-size:38px;line-height:1.35;font-weight:900;margin:0 0 18px;letter-spacing:.01em}
+  .teiki h2 .em{background:linear-gradient(180deg,transparent 60%, oklch(0.70 0.18 45 / .9) 60%, oklch(0.70 0.18 45 / .9) 92%, transparent 92%);padding:0 4px}
+  .teiki .lead{font-size:16.5px;line-height:1.95;color:rgba(255,255,255,.92);margin:0 0 32px;max-width:720px}
+  .teiki-stats{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;margin-bottom:34px;max-width:820px}
+  .teiki-stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20);border-radius:var(--r-lg);padding:26px 18px;text-align:center;backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:196px}
+  .teiki-stat .cap{font-size:12.5px;color:rgba(255,255,255,.86);font-weight:700;letter-spacing:.03em}
+  .stat-num .ic, .stat-badge .ic{opacity:.95}
+  .stat-num .n{font-family:'Inter',sans-serif;font-weight:900;font-size:48px;line-height:1;letter-spacing:.01em}
+  .stat-num .n .u{font-size:20px;font-weight:800;margin-left:3px}
+  .donut{position:relative;width:118px;height:118px}
+  .donut svg{width:118px;height:118px;transform:rotate(-90deg)}
+  .donut .track{fill:none;stroke:rgba(255,255,255,.20);stroke-width:11}
+  .donut .fill{fill:none;stroke:oklch(0.86 0.17 155);stroke-width:11;stroke-linecap:round;stroke-dasharray:310.4 327}
+  .donut .ctr{position:absolute;inset:0;display:grid;place-items:center;color:#fff}
+  .donut .ctr .grp{display:inline-flex;align-items:baseline}
+  .donut .ctr .v{font-family:'Inter',sans-serif;font-weight:900;font-size:35px;line-height:1;letter-spacing:.01em}
+  .donut .ctr .u{font-family:'Inter',sans-serif;font-weight:800;font-size:15px;margin-left:1px}
+  .stat-badge .ic{color:oklch(0.86 0.15 90)}
+  .stat-badge .t1{font-size:13px;font-weight:800;line-height:1.4}
+  .stat-badge .t2{font-family:'Inter',sans-serif;font-size:16px;font-weight:900;letter-spacing:.005em;margin-top:1px}
+  .teiki-feats{list-style:none;margin:0 0 34px;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:760px}
+  .teiki-feats li{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);padding:14px 18px;border-radius:12px;font-size:13.5px;font-weight:600;line-height:1.4}
+  .teiki-feats li svg{flex:0 0 auto;color:oklch(0.85 0.16 150)}
+  .teiki-ctas{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:540px;margin:0 auto}
+  .teiki-ctas .btn{width:100%;padding:18px 26px;font-size:16px}
+  .btn-ghost{background:rgba(255,255,255,.10);color:#fff;border:1.5px solid rgba(255,255,255,.55)}
+  .btn-ghost:hover{background:rgba(255,255,255,.18)}
+  @media(max-width:720px){
+    .teiki{padding:52px 20px}
+    .teiki h2{font-size:27px;line-height:1.4}
+    .teiki .lead{font-size:15px}
+    .teiki-stats{gap:12px}
+    .teiki-stat{min-height:0;padding:22px 16px}
+    .stat-num .n{font-size:42px}
+    .teiki-feats{grid-template-columns:1fr}
+    .teiki-ctas{grid-template-columns:1fr}
+  }
+
   /* === Section base === */
   section{padding:96px 24px}
   .container{max-width:var(--maxw);margin:0 auto}
@@ -336,6 +379,11 @@
   .form-submit .btn{padding:20px 56px;font-size:17px}
   .form-success{display:none;padding:28px;background:linear-gradient(135deg, var(--c-brand-soft), var(--c-bg-tint));border-radius:var(--r-lg);text-align:center;color:var(--c-brand-deep);font-weight:700;font-size:16px;line-height:1.7;margin-bottom:24px;border:1px solid var(--c-brand-soft)}
   .form-success.show{display:block}
+  .form-reassure{display:flex;align-items:center;gap:14px;background:var(--c-bg-tint);border:1px solid var(--c-brand-soft);border-radius:var(--r-md);padding:16px 20px;margin-bottom:26px}
+  .form-reassure .ic{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--c-brand-deep);box-shadow:var(--shadow-sm)}
+  .form-reassure .tx{font-size:13.5px;line-height:1.7;color:var(--c-ink-2)}
+  .form-reassure .tx b{color:var(--c-brand-deep);font-weight:800}
+  @media(max-width:520px){.form-reassure{padding:14px 16px;gap:12px}.form-reassure .tx{font-size:12.5px}}
   .privacy-note{margin-top:14px;font-size:12px;color:var(--c-ink-3);text-align:center;line-height:1.7}
 
   /* === Footer === */
@@ -648,6 +696,47 @@
   </div>
 </section>
 
+<!-- 定期清掃 訴求バンド -->
+<section class="teiki" id="teiki">
+  <div class="teiki-inner">
+    <div class="teiki-eyebrow">Regular Cleaning ｜ 定期・日常清掃</div>
+    <h2>オフィス・ビル・マンションの<br><span class="em">定期清掃</span>なら、AGENCIA。</h2>
+    <p class="lead">
+      有資格者が現場を管理し、建物に合わせて<strong>月1回〜週数回まで柔軟に清掃プランを設計</strong>。
+      日常清掃から専門清掃までワンストップで対応し、建物の美観と資産価値を継続的に守ります。
+    </p>
+    <div class="teiki-stats">
+      <div class="teiki-stat stat-num">
+        <span class="ic" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 21v-4h6v4"/><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01"/></svg></span>
+        <div class="n">150<span class="u">社</span></div>
+        <div class="cap">導入いただいた実績</div>
+      </div>
+      <div class="teiki-stat stat-donut">
+        <div class="donut">
+          <svg viewBox="0 0 118 118"><circle class="track" cx="59" cy="59" r="52"/><circle class="fill" cx="59" cy="59" r="52"/></svg>
+          <div class="ctr"><span class="grp"><span class="v">95</span><span class="u">%</span></span></div>
+        </div>
+        <div class="cap">契約継続率</div>
+      </div>
+      <div class="teiki-stat stat-badge">
+        <span class="ic" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+        <div class="t1">建築物清掃業登録</div>
+        <div class="t2">東京都7清第1327号</div>
+      </div>
+    </div>
+    <ul class="teiki-feats">
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 有資格者が現場を管理</li>
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 月1回〜週数回まで柔軟な頻度設計</li>
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 日常清掃〜専門清掃までワンストップ</li>
+      <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 報告・連絡ていねい</li>
+    </ul>
+    <div class="teiki-ctas">
+      <a href="#contact" class="btn btn-cta">定期清掃の無料お見積り <span class="arr">→</span></a>
+      <a href="#contact" class="btn btn-ghost">まずは相談だけしたい</a>
+    </div>
+  </div>
+</section>
+
 <!-- Pain points -->
 <section class="pain" id="pain">
   <div class="container">
@@ -756,12 +845,12 @@
     </div>
     <div class="svc-grid">
       <div class="svc-card">
-        <div class="svc-img" data-img="images/service-01.jpg"><span>service-01.jpg</span></div>
-        <div class="svc-body"><h4>日常清掃（定期）</h4><p>週1〜毎日まで頻度を自由設計。共用部の美観を維持し、入居者満足度を高めます。</p></div>
+        <div class="svc-img" data-img="images/service-02.jpg"><span>service-02.jpg</span></div>
+        <div class="svc-body"><h4>定期清掃（月1〜）</h4><p>床のポリッシャー洗浄・ワックスがけなど、日常では落とせない汚れを徹底クリーニング。オフィス・ビル・マンションの美観維持の要です。</p></div>
       </div>
       <div class="svc-card">
-        <div class="svc-img" data-img="images/service-02.jpg"><span>service-02.jpg</span></div>
-        <div class="svc-body"><h4>定期清掃（月1〜）</h4><p>床のポリッシャー洗浄・ワックスがけなど、日常では落とせない汚れを徹底クリーニング。</p></div>
+        <div class="svc-img" data-img="images/service-01.jpg"><span>service-01.jpg</span></div>
+        <div class="svc-body"><h4>日常清掃（定期）</h4><p>週1〜毎日まで頻度を自由設計。共用部の美観を維持し、入居者満足度を高めます。</p></div>
       </div>
       <div class="svc-card">
         <div class="svc-img" data-img="images/service-03.jpg"><span>service-03.jpg</span></div>
@@ -1252,6 +1341,12 @@
       <p>下記フォームから24時間お問い合わせを受け付けています。お電話の場合は<strong style="color:var(--c-brand-deep)">03-6555-1607</strong>（10:00〜18:00 / 土日定休）まで。</p>
     </div>
     <div class="form-wrap">
+      <div class="form-reassure">
+        <span class="ic" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <div class="tx"><b>「まだ検討段階」「相談だけ」でも大歓迎です。</b><br>いきなりのご依頼でなくて大丈夫。清掃頻度がわからない・他社と比較したい、そんな段階のご相談も無料で承ります。しつこい営業は一切いたしません。</div>
+      </div>
       <div class="form-success" id="successMsg">
         ✓ お問い合わせありがとうございます。<br>
         担当者より2営業日以内にご連絡いたします。
