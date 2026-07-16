@@ -1355,7 +1355,7 @@
         <input type="hidden" name="_subject" value="【お見積り依頼】株式会社AGENCIAへのお問い合わせ" />
         <input type="hidden" name="_language" value="ja" />
         <div class="form-grid">
-          <div class="field">
+          <div class="field full">
             <label>会社名・建物名 <span class="req">必須</span></label>
             <input type="text" name="会社名・建物名" required placeholder="例）株式会社サンプル / ○○ビル" />
             <small class="field-error">会社名・建物名をご入力ください。</small>
@@ -1364,6 +1364,11 @@
             <label>ご担当者名 <span class="req">必須</span></label>
             <input type="text" name="ご担当者名" required placeholder="例）山田 太郎" />
             <small class="field-error">ご担当者名をご入力ください。</small>
+          </div>
+          <div class="field">
+            <label>ふりがな <span class="req">必須</span></label>
+            <input type="text" name="ふりがな" required placeholder="例）やまだ たろう" />
+            <small class="field-error">ふりがなをご入力ください。</small>
           </div>
           <div class="field">
             <label>電話番号 <span class="req">必須</span></label>
@@ -1494,12 +1499,14 @@
     }
     var company = form.querySelector('[name="会社名・建物名"]');
     var name    = form.querySelector('[name="ご担当者名"]');
+    var furi    = form.querySelector('[name="ふりがな"]');
     var tel     = form.querySelector('[name="電話番号"]');
     var email   = form.querySelector('[name="メールアドレス"]');
     var agree   = form.querySelector('input[type="checkbox"]');
 
     check(company, company.value.trim() !== '');
     check(name,    name.value.trim() !== '');
+    check(furi,    furi.value.trim() !== '');
     check(tel,     isTel(tel.value.trim()));
     check(email,   isEmail(email.value.trim()));
     check(agree,   agree.checked);
@@ -1507,7 +1514,7 @@
   }
 
   // 入力したらその項目のエラーを解除
-  form.querySelectorAll('[name="会社名・建物名"],[name="ご担当者名"],[name="電話番号"],[name="メールアドレス"]').forEach(function(el){
+  form.querySelectorAll('[name="会社名・建物名"],[name="ご担当者名"],[name="ふりがな"],[name="電話番号"],[name="メールアドレス"]').forEach(function(el){
     el.addEventListener('input', function(){ setError(el, false); });
   });
   var agreeCb = form.querySelector('input[type="checkbox"]');
@@ -1530,8 +1537,9 @@
     btn.textContent = '送信中…';
 
     var fd = new FormData(form);
-    var params = {
-      to_name:       fd.get('ご担当者名') || '',
+    var nm = (fd.get('ご担当者名') || '').trim();
+    var fg = (fd.get('ふりがな') || '').trim();
+    var base = {
       reply_to:      fd.get('メールアドレス') || '',
       company:       fd.get('会社名・建物名') || '',
       tel:           fd.get('電話番号') || '',
@@ -1540,16 +1548,20 @@
       service:       fd.get('ご希望の清掃') || '（未選択）',
       message:       fd.get('ご相談内容・ご質問') || '（未入力）'
     };
+    // お客様への自動返信は氏名のみ（挨拶用）
+    var params = Object.assign({ to_name: nm, furigana: fg }, base);
+    // AGENCIA宛の通知・Chatは氏名にふりがなを併記（テンプレ改修不要で反映）
+    var notifyParams = Object.assign({ to_name: fg ? (nm + '（' + fg + '）') : nm, furigana: fg }, base);
 
     // ① AGENCIA宛 通知メール（最重要・リード取りこぼし防止）を先に送信
-    emailjs.send('service_m916br3', 'template_btme40k', params)
+    emailjs.send('service_m916br3', 'template_btme40k', notifyParams)
     .then(function() {
       // ② お客様宛 自動返信メールはベストエフォート（失敗しても完了扱い）
       emailjs.send('service_m916br3', 'template_019myqo', params).catch(function(){});
       // ③ Google Chat 通知（Apps Script中継）。遷移中でも確実に送るため sendBeacon を使用
       try {
         var CHAT_RELAY_URL = 'https://script.google.com/macros/s/AKfycbzxmCGGLBrCpjB4CRPkeCnnbQCY69KYdN4Piyte5KXqtiy-eoYU9hOyqgDmBgg1gj_Nug/exec';
-        navigator.sendBeacon(CHAT_RELAY_URL, new Blob([JSON.stringify(params)], {type:'text/plain;charset=UTF-8'}));
+        navigator.sendBeacon(CHAT_RELAY_URL, new Blob([JSON.stringify(notifyParams)], {type:'text/plain;charset=UTF-8'}));
       } catch(_) {}
       // お礼ページへ遷移（コンバージョン計測は thanks.html 側で発火）
       window.location.href = 'thanks.html';
