@@ -384,6 +384,10 @@
   .form-reassure .tx{font-size:13.5px;line-height:1.7;color:var(--c-ink-2)}
   .form-reassure .tx b{color:var(--c-brand-deep);font-weight:800}
   @media(max-width:520px){.form-reassure{padding:14px 16px;gap:12px}.form-reassure .tx{font-size:12.5px}}
+  /* 営業・勧誘お断りの注意書き */
+  .form-notice{display:flex;align-items:flex-start;gap:10px;background:oklch(0.97 0.03 30);border:1px solid var(--c-accent);border-radius:var(--r-md);padding:14px 18px;margin-bottom:24px;font-size:13px;line-height:1.75;color:var(--c-accent-deep);font-weight:600}
+  .form-notice svg{flex:0 0 auto;margin-top:2px}
+  .form-notice b{font-weight:800}
   .privacy-note{margin-top:14px;font-size:12px;color:var(--c-ink-3);text-align:center;line-height:1.7}
 
   /* === Footer === */
@@ -1347,6 +1351,10 @@
         </span>
         <div class="tx"><b>「まだ検討段階」「相談だけ」でも大歓迎です。</b><br>いきなりのご依頼でなくて大丈夫。清掃頻度がわからない・他社と比較したい、そんな段階のご相談も無料で承ります。しつこい営業は一切いたしません。</div>
       </div>
+      <div class="form-notice">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div><b>営業・業務提携・取材などのご提案はお受けしておりません。</b>本フォームは清掃サービスの発注をご検討中の方専用です。営業目的のお問い合わせにはご返信いたしかねます。</div>
+      </div>
       <div class="form-success" id="successMsg">
         ✓ お問い合わせありがとうございます。<br>
         担当者より2営業日以内にご連絡いたします。
@@ -1394,7 +1402,6 @@
               <option>マンション</option>
               <option>医療機関・クリニック</option>
               <option>学校・公共施設</option>
-              <option>その他</option>
             </select>
           </div>
           <div class="field">
@@ -1414,12 +1421,17 @@
             </select>
           </div>
           <div class="field full">
-            <label>ご相談内容・ご質問 <span class="opt">任意</span></label>
-            <textarea name="ご相談内容・ご質問" placeholder="例）月1回の定期清掃を検討しています。広さは80坪ほどで、現状のお見積りを比較したいです。"></textarea>
+            <label>ご相談内容・ご質問 <span class="req">必須</span></label>
+            <textarea name="ご相談内容・ご質問" required placeholder="例）月1回の定期清掃を検討しています。広さは80坪ほどで、現状のお見積りを比較したいです。（清掃の対象・広さ・ご希望の頻度などを具体的にお書きください）"></textarea>
+            <small class="field-error">ご相談内容を30文字以上で具体的にご記入ください。</small>
           </div>
         </div>
         <div class="check-row">
-          <label><input type="checkbox" required /> プライバシーポリシーに同意の上、送信します。</label>
+          <label><input type="checkbox" id="agreeIntent" required /> 清掃サービスの発注・ご利用を検討しています。</label>
+          <small class="field-error">清掃サービスの発注をご検討の方のみお問い合わせいただけます。</small>
+        </div>
+        <div class="check-row">
+          <label><input type="checkbox" id="agreePrivacy" required /> プライバシーポリシーに同意の上、送信します。</label>
           <small class="field-error">送信するにはプライバシーポリシーへの同意が必要です。</small>
         </div>
         <div class="form-submit">
@@ -1502,23 +1514,28 @@
     var furi    = form.querySelector('[name="ふりがな"]');
     var tel     = form.querySelector('[name="電話番号"]');
     var email   = form.querySelector('[name="メールアドレス"]');
-    var agree   = form.querySelector('input[type="checkbox"]');
+    var msg     = form.querySelector('[name="ご相談内容・ご質問"]');
+    var intent  = form.querySelector('#agreeIntent');
+    var privacy = form.querySelector('#agreePrivacy');
 
     check(company, company.value.trim() !== '');
     check(name,    name.value.trim() !== '');
     check(furi,    furi.value.trim() !== '');
     check(tel,     isTel(tel.value.trim()));
     check(email,   isEmail(email.value.trim()));
-    check(agree,   agree.checked);
+    check(msg,     msg.value.trim().length >= 30);
+    check(intent,  intent.checked);
+    check(privacy, privacy.checked);
     return firstInvalid;
   }
 
   // 入力したらその項目のエラーを解除
-  form.querySelectorAll('[name="会社名・建物名"],[name="ご担当者名"],[name="ふりがな"],[name="電話番号"],[name="メールアドレス"]').forEach(function(el){
+  form.querySelectorAll('[name="会社名・建物名"],[name="ご担当者名"],[name="ふりがな"],[name="電話番号"],[name="メールアドレス"],[name="ご相談内容・ご質問"]').forEach(function(el){
     el.addEventListener('input', function(){ setError(el, false); });
   });
-  var agreeCb = form.querySelector('input[type="checkbox"]');
-  if(agreeCb){ agreeCb.addEventListener('change', function(){ setError(agreeCb, !agreeCb.checked); }); }
+  [form.querySelector('#agreeIntent'), form.querySelector('#agreePrivacy')].forEach(function(cb){
+    if(cb){ cb.addEventListener('change', function(){ setError(cb, !cb.checked); }); }
+  });
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
